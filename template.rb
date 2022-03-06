@@ -1,6 +1,25 @@
 require "fileutils"
 require "shellwords"
 
+def add_template_repository_to_source_path
+  if __FILE__ =~ %r{\Ahttps?://}
+    require "tmpdir"
+    source_paths.unshift(tempdir = Dir.mktmpdir("rails-vite-tailwindcss-"))
+    at_exit { FileUtils.remove_entry(tempdir) }
+    git clone: [
+      "--quiet",
+      "https://github.com/IsraelDCastro/rails-vite-tailwindcss-template.git",
+      tempdir
+    ].map(&:shellescape).join(" ")
+
+    if (branch = __FILE__[%r{rails-vite-tailwindcss-template/(.+)/template.rb}, 1])
+      Dir.chdir(tempdir) { git checkout: branch }
+    end
+  else
+    source_paths.unshift(File.dirname(__FILE__))
+  end
+end
+
 def add_gems
   gem 'vite_rails'
   gem 'vite_ruby'
@@ -52,6 +71,7 @@ end
 # Main setup
 
 after_bundle do
+  add_template_repository_to_source_path
   set_application_name
   add_pages_controller
   add_javascript
