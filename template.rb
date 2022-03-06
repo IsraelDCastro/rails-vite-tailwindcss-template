@@ -97,15 +97,12 @@ after_bundle do
   end
 
   say
-  say "Jumpstart app successfully created!", :blue
+  say "Rails 7 + Vue 3 + ViteJS + Tailwindcss created!", :green
   say
-  say "To get started with your new app:", :green
+  say "To get started with your new app:", :yellow
   say "  cd #{app_name}"
   say
   say "  # Update config/database.yml with your database credentials"
   say
-  say "  rails db:create && rails db:migrate"
-  say "  rails g madmin:install # Generate admin dashboards"
-  say "  gem install foreman"
-  say "  foreman start # Run Rails, sidekiq, and vite"
+  say "  rails s"
 end
