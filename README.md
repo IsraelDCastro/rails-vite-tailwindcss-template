@@ -2,7 +2,7 @@
 Rails 7 + Vue 3 + ViteJS + Tailwindcss
 </h1>
 
-This is a rails template with <a href="https://vuejs.org/" target="_blank">VueJS</a> and <<a href="https://vitejs.dev/" target="_blank">ViteJS</a> as roll up. Also it has <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>.
+This is a rails template with <a href="https://vuejs.org/" target="_blank">VueJS</a> and <a href="https://vitejs.dev/" target="_blank">ViteJS</a> as roll up. Also it has <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>.
 
 This is the best option to start a project with Rails 7 + Vue 3 + Vite + Tailwind CSS. You can make a fast project and start working on it without any problem.
 
