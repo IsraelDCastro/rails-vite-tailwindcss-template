@@ -4,7 +4,7 @@ require "shellwords"
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("rails-vite-tailwindcss-"))
+    source_paths.unshift(tempdir = Dir.mktmpdir("rails-"))
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
@@ -70,6 +70,8 @@ end
 
 # Main setup
 
+add_gems
+
 after_bundle do
   add_template_repository_to_source_path
   set_application_name
@@ -80,21 +82,18 @@ after_bundle do
   add_vite
 
   rails_command "active_storage:install"
+  rails_command "db:migrate"
 
   remove_file "app/views/pages/home.html.erb"
 
   copy_file "app/views/pages/home.html.erb"
 
   # Commit everything to git
-  unless ENV["SKIP_GIT"]
-    git :init
-    git add: "."
-    # git commit will fail if user.email is not configured
-    begin
-      git commit: %( -m 'Initial commit' )
-    rescue StandardError => e
-      puts e.message
-    end
+  begin
+    git add: (".")
+    git commit: %( -m 'Initial commit' )
+  rescue StandardError => e
+    puts e.message
   end
 
   say
