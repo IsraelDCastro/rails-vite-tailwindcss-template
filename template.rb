@@ -41,7 +41,7 @@ end
 
 def add_javascript
   run "yarn add autoprefixer postcss sass tailwindcss vite vue"
-  run "yarn add -D @vitejs/plugin-vue @vue/compiler-sfc eslint eslint-plugin-tailwindcss eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby yarn-upgrade-all"
+  run "yarn add -D @vitejs/plugin-vue @vue/compiler-sfc eslint eslint-plugin-tailwindcss eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby"
 end
 
 def copy_templates
@@ -79,12 +79,11 @@ after_bundle do
 
   rails_command "active_storage:install"
 
-
   remove_file "app/views/pages/home.html.erb"
 
   copy_file "app/views/pages/home.html.erb"
 
-  rails_command "db:migrate"
+  # rails_command "db:migrate"
   # Commit everything to git
   begin
     git add: (".")
@@ -99,7 +98,7 @@ after_bundle do
   say "To get started with your new app:", :yellow
   say "  cd #{app_name}"
   say
-  say "  # Update config/database.yml with your database credentials"
+  say "  #Please update config/database.yml with your database credentials"
   say
   say "  rails s"
 end
