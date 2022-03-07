@@ -24,7 +24,7 @@ def add_gems
   gem 'vite_rails'
   gem 'vite_ruby'
   gem "image_processing", "~> 1.2"
-  gem "annotate", group: [:development, :test]
+  gem "annotate", group: :development
 end
 
 def set_application_name

@@ -13,13 +13,13 @@ This template starts with Active Storage by default when you create it. If you d
 ##### From GitHub
 
 ```bash
-    rails new test-git --skip-webpack-install --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template.rb
+rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template.rb
 ```
 
 ##### Making a git clone of the project
 
 ```bash
-    rails new test-git --skip-webpack-install --skip-javascript -d <database_you_want> -m template.rb
+rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template.rb
 ```
 Just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
