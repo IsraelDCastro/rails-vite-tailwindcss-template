@@ -24,7 +24,6 @@ def add_gems
   gem 'vite_rails'
   gem 'vite_ruby'
   gem "image_processing", "~> 1.2"
-  inject_into_file('Gemfile', "\n    gem \"annotate\"", after: 'group :development, :test do')
 end
 
 def set_application_name
@@ -48,7 +47,6 @@ def copy_templates
   # remove_file "app/frontend/entrypoints/application.js"
   # remove_file "app/frontend/components" # Webpack
 
-  # copy_file "Procfile"
   copy_file "Procfile.dev"
   copy_file "jsconfig.json"
   copy_file "tailwind.config.js"
