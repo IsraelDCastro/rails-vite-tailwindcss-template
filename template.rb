@@ -24,7 +24,7 @@ def add_gems
   gem 'vite_rails'
   gem 'vite_ruby'
   gem "image_processing", "~> 1.2"
-  inject_into_file('Gemfile', '\n    gem "annotate"', after: 'group :development, :test do')
+  inject_into_file('Gemfile', "\n    gem \"annotate\"", after: 'group :development, :test do')
 end
 
 def set_application_name
