@@ -24,7 +24,7 @@ def add_gems
   gem 'vite_rails'
   gem 'vite_ruby'
   gem "image_processing", "~> 1.2"
-  gem "annotate", group: :development
+  inject_into_file('Gemfile', '\n    gem "annotate"', after: 'group :development, :test do')
 end
 
 def set_application_name
@@ -37,9 +37,6 @@ end
 
 def add_vite
   run 'bundle exec vite install'
-  inject_into_file('vite.config.ts', "import FullReload from 'vite-plugin-full-reload'\n", after: %(from 'vite'\n))
-  inject_into_file('vite.config.ts', "import StimulusHMR from 'vite-plugin-stimulus-hmr'\n", after: %(from 'vite'\n))
-  inject_into_file('vite.config.ts', "\n    FullReload(['config/routes.rb', 'app/views/**/*']),", after: 'plugins: [')
 end
 
 def add_javascript
@@ -82,12 +79,13 @@ after_bundle do
   add_vite
 
   rails_command "active_storage:install"
-  rails_command "db:migrate"
+
 
   remove_file "app/views/pages/home.html.erb"
 
   copy_file "app/views/pages/home.html.erb"
 
+  rails_command "db:migrate"
   # Commit everything to git
   begin
     git add: (".")
