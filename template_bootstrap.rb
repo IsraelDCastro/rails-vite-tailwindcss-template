@@ -55,7 +55,6 @@ def copy_templates
   directory "bootstrap/app", "app", force: true
   directory "bootstrap/lib", "lib", force: true
 
-  remove_dir "#{app_name}/bootstrap"
   say "Remove bootstrap directory from template.", :red
   run "rm -rf #{app_name}/bootstrap"
 end
@@ -79,10 +78,6 @@ after_bundle do
   add_vite
 
   rails_command "active_storage:install"
-
-  remove_file "bootstrap/app/views/pages/home.html.erb"
-
-  copy_file "bootstrap/app/views/pages/home.html.erb"
 
   # rails_command "db:migrate"
   # Commit everything to git
