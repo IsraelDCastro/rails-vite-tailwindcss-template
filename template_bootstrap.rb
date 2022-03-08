@@ -12,7 +12,7 @@ def add_template_repository_to_source_path
       tempdir
     ].map(&:shellescape).join(" ")
 
-    if (branch = __FILE__[%r{rails-vite-tailwindcss-template/(.+)/template.rb}, 1])
+    if (branch = __FILE__[%r{rails-vite-tailwindcss-template/(.+)/template_bootstrap.rb}, 1])
       Dir.chdir(tempdir) { git checkout: branch }
     end
   else
@@ -51,10 +51,7 @@ def copy_templates
   copy_file "jsconfig.json", force: true
   copy_file "vite.config.ts", force: true
 
-  remove_dir "bootstrap/app/frontend"
-
   directory "bootstrap/app", force: true
-  directory "bootstrap/app/frontend", force: true
   directory "bootstrap/lib", force: true
 end
 
