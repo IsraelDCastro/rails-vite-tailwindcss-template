@@ -55,8 +55,8 @@ def copy_templates
   directory "bootstrap/app", "app", force: true
   directory "bootstrap/lib", "lib", force: true
 
-  remove_dir "bootstrap"
-  say "Remove bootstrap directory from template!", :red
+  remove_dir "#{app_name}/bootstrap"
+  say "Remove bootstrap directory from template.", :red
   run "rm -rf #{app_name}/bootstrap"
 end
 
@@ -98,7 +98,8 @@ after_bundle do
   say
   say "To get started with your new app:", :yellow
   say "  cd #{app_name}"
-  say
+  say "  #If bootstrap directory is inside your project, be sure"
+  say "  #To delete it, it does not affect your project."
   say "  #Please update config/database.yml with your database credentials"
   say
   say "  rails s"
