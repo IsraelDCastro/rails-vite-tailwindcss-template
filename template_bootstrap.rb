@@ -51,8 +51,8 @@ def copy_templates
   copy_file "jsconfig.json", force: true
   copy_file "vite.config.ts", force: true
 
-  remove_directory "bootstrap/app/frontend"
-  
+  remove_dir "bootstrap/app/frontend"
+
   directory "bootstrap/app", force: true
   directory "bootstrap/app/frontend", force: true
   directory "bootstrap/lib", force: true
