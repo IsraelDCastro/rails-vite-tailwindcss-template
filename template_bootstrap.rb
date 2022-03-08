@@ -47,6 +47,7 @@ end
 def copy_templates
   # remove_file "app/frontend/entrypoints/application.js"
   # remove_file "app/frontend/components" # Webpack
+  
   copy_file "Procfile.dev", force: true
   copy_file "jsconfig.json", force: true
   copy_file "vite.config.ts", force: true
