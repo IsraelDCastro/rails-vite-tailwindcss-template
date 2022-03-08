@@ -53,7 +53,7 @@ def copy_templates
   copy_file "vite.config.ts"
 
   directory "bootstrap/app", force: true
-  directory "bootstrap/config", force: true
+  directory "bootstrap/lib", force: true
 end
 
 def add_pages_controller
