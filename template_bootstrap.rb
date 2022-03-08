@@ -51,8 +51,10 @@ def copy_templates
   copy_file "Procfile.dev", force: true
   copy_file "jsconfig.json", force: true
   copy_file "vite.config.ts", force: true
+  copy_file "bootstrap/app/frontend/entrypoints/application.js", force: true
 
   directory "bootstrap/app", force: true
+  directory "bootstrap/app/frontend", force: true
   directory "bootstrap/lib", force: true
 end
 
