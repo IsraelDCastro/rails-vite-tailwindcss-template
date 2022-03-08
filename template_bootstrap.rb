@@ -47,12 +47,12 @@ end
 def copy_templates
   # remove_file "app/frontend/entrypoints/application.js"
   # remove_file "app/frontend/components" # Webpack
-
   copy_file "Procfile.dev", force: true
   copy_file "jsconfig.json", force: true
   copy_file "vite.config.ts", force: true
-  copy_file "bootstrap/app/frontend/entrypoints/application.js", force: true
 
+  remove_directory "bootstrap/app/frontend"
+  
   directory "bootstrap/app", force: true
   directory "bootstrap/app/frontend", force: true
   directory "bootstrap/lib", force: true
