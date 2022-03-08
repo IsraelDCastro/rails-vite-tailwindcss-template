@@ -56,7 +56,8 @@ def copy_templates
   directory "bootstrap/lib", "lib", force: true
 
   remove_dir "bootstrap"
-  run "rm -rf bootstrap"
+  say "Remove bootstrap directory from template!", :red
+  run "rm -rf #{app_name}/bootstrap"
 end
 
 def add_pages_controller
