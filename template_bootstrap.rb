@@ -52,9 +52,13 @@ def copy_templates
   copy_file "jsconfig.json", force: true
   copy_file "vite.config.ts", force: true
 
-  FileUtils.cp_r "bootstrap/app", "app"
   directory "bootstrap/app", force: true
+  directory "bootstrap/app", "lol", force: true
   directory "bootstrap/lib", force: true
+
+  FileUtils.mv("bootstrap/app", "app")
+
+  remove_dir "bootstrap/app", force: true
 end
 
 def add_pages_controller
