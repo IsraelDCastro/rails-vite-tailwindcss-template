@@ -10,13 +10,11 @@ This template starts with Active Storage by default when you create it. If you d
 - `template_bootstrap.rb.rb` has <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> 5 as default Framework CSS. [Start](https://github.com/IsraelDCastro/rails-vite-tailwindcss-template#bootstrap)
 - `template_bulma.rb.rb` has <a href="https://bulma.io/" target="_blank">Bulma</a> as default Framework CSS. [Start](https://github.com/IsraelDCastro/rails-vite-tailwindcss-template#bulma)
 
-[comment]: <> (`template_bootstrap.rb` working on it.)
-
 ## Installation
 
 I use the flags `--skip-webpack-install --skip-javascript` to prevent installing webpack or esBuild to avoid conflicts with ViteJS⚡️.
 
-## [Rails 7 + Vue 3 + ViteJS + Tailwind CSS](#tailwindcss)
+## <a name="tailwindcss"></a>[Rails 7 + Vue 3 + ViteJS + Tailwind CSS](#tailwindcss)
 
 ##### From GitHub
 
@@ -41,7 +39,7 @@ Just be sure to be inside the project when you run the command, from outside be 
 > - vite
 > - vue
 
-## [Rails 7 + Vue 3 + ViteJS + Bootstrap 5](#bootstrap)
+## <a name="bootstrap"></a>[Rails 7 + Vue 3 + ViteJS + Bootstrap 5](#bootstrap)
 
 ##### From GitHub
 
@@ -65,7 +63,7 @@ Just be sure to be inside the project when you run the command, from outside be 
 > - vite
 > - vue
 
-## [Rails 7 + Vue 3 + ViteJS + Bulma](#bulma)
+## <a name="bulma"></a>[Rails 7 + Vue 3 + ViteJS + Bulma](#bulma)
 
 ##### From GitHub
 
