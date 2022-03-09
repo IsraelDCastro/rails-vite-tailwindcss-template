@@ -76,7 +76,7 @@ after_bundle do
 
   copy_templates
   add_vite
-
+  rails_command "db:create"
   rails_command "active_storage:install"
 
   # rails_command "db:migrate"

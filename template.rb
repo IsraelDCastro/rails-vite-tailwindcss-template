@@ -76,7 +76,8 @@ after_bundle do
 
   copy_templates
   add_vite
-
+  
+  rails_command "db:create"
   rails_command "active_storage:install"
 
   remove_file "app/views/pages/home.html.erb"
