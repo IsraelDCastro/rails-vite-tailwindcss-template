@@ -6,9 +6,9 @@ This template starts with Active Storage by default when you create it. If you d
 
 ### Framework CSS
 
-- `template.rb` has <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a> as default Framework CSS. [Start](https://github.com/IsraelDCastro/not-idea-ui#tailwindcss)
-- `template_bootstrap.rb.rb` has <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> 5 as default Framework CSS. [Start](https://github.com/IsraelDCastro/not-idea-ui#bootstrap)
-- `template_bulma.rb.rb` has <a href="https://bulma.io/" target="_blank">Bulma</a> as default Framework CSS. [Start](https://github.com/IsraelDCastro/not-idea-ui#bulma)
+- `template.rb` has <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a> as default Framework CSS. [Start](https://github.com/IsraelDCastro/rails-vite-tailwindcss-template#tailwindcss)
+- `template_bootstrap.rb.rb` has <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> 5 as default Framework CSS. [Start](https://github.com/IsraelDCastro/rails-vite-tailwindcss-template#bootstrap)
+- `template_bulma.rb.rb` has <a href="https://bulma.io/" target="_blank">Bulma</a> as default Framework CSS. [Start](https://github.com/IsraelDCastro/rails-vite-tailwindcss-template#bulma)
 
 [comment]: <> (`template_bootstrap.rb` working on it.)
 
