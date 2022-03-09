@@ -89,7 +89,7 @@ after_bundle do
   end
 
   say
-  say "Rails 7 + Vue 3 + ViteJS + Bootstap 5 created!", :green
+  say "Rails 7 + Vue 3 + ViteJS + Bulma 5 created!", :green
   say
   say "To get started with your new app:", :yellow
   say "  cd #{app_name}"
