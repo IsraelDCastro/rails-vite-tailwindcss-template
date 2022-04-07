@@ -41,9 +41,14 @@ def add_vite
   run 'bundle exec vite install'
 end
 
-def add_javascript
+def add_javascript_vue
   run 'yarn add autoprefixer postcss sass tailwindcss vite vue'
   run 'yarn add -D @vitejs/plugin-vue @vue/compiler-sfc eslint eslint-plugin-tailwindcss eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby'
+end
+
+def add_javascript_react
+  run 'yarn add autoprefixer postcss sass tailwindcss vite react react-dom'
+  run 'yarn add -D @vitejs/plugin-react-refresh eslint eslint-plugin-tailwindcss eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby'
 end
 
 def copy_templates
@@ -52,9 +57,8 @@ def copy_templates
   copy_file 'jsconfig.json'
   copy_file 'tailwind.config.js'
   copy_file 'postcss.config.js'
-  copy_file 'vite.config.ts'
 
-  directory 'app', force: true
+  # directory 'app', force: true
   directory 'config', force: true
   directory 'lib', force: true
 end
@@ -67,19 +71,24 @@ end
 def run_command_flags
   ARGV.each do |flag|
     # process arguments like so
-    say 'Please add VueJS', :brown if flag == '--vue'
+    copy_file 'vite.config-react.ts', 'vite.config.ts' if flag == '--react'
+    copy_file '.eslintrc-react.json', '.eslintrc.json' if flag == '--react'
+    directory 'app-react', 'app', force: true if flag == '--react'
+    add_javascript_react if flag == '--react'
+
+    copy_file 'vite.config-vue.ts', 'vite.config.ts' if flag == '--vue'
+    copy_file '.eslintrc-vue.json', '.eslintrc.json' if flag == '--vue'
+    directory 'app-vue', 'app', force: true if flag == '--vue'
+    add_javascript_vue if flag == '--vue'
   end
 end
 
 # Main setup
-
 add_gems
-
 after_bundle do
   add_template_repository_to_source_path
   set_application_name
   add_pages_controller
-  add_javascript
   run_command_flags
 
   copy_templates
@@ -88,10 +97,9 @@ after_bundle do
   rails_command 'db:create'
   rails_command 'active_storage:install'
 
-  remove_file 'app/views/pages/home.html.erb'
-
-  copy_file 'app/views/pages/home.html.erb'
-
+  # remove_file 'app/views/pages/home.html.erb'
+  #
+  # copy_file 'app/views/pages/home.html.erb'
 
   begin
     git add: '.'
@@ -101,7 +109,12 @@ after_bundle do
   end
 
   say
-  say 'Rails 7 + Vue 3 + ViteJS + Tailwindcss created!', :green
+
+  ARGV.each do |flag|
+    say 'Rails 7 + Vue 3 + ViteJS + Tailwindcss created!', :green if flag == '--vue'
+    say 'Rails 7 + ReactJS 18 + ViteJS + Tailwindcss created!', :green if flag == '--react'
+  end
+
   say
   say 'To get started with your new app:', :yellow
   say "  cd #{app_name}"
