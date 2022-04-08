@@ -39,29 +39,44 @@ def add_vite
   run 'bundle exec vite install'
 end
 
-def add_javascript
+def add_javascript_vue
   run "yarn add bootstrap @popperjs/core sass vite vue"
   run "yarn add -D @vitejs/plugin-vue @vue/compiler-sfc eslint eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby"
 end
 
+def add_javascript_react
+  run 'yarn add bootstrap @popperjs/core sass vite react react-dom'
+  run 'yarn add -D @vitejs/plugin-react-refresh eslint eslint-plugin-tailwindcss eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby'
+end
+
 def copy_templates
-  # remove_file "app/frontend/entrypoints/application.js"
-  # remove_file "app/frontend/components" # Webpack
 
   copy_file "Procfile.dev", force: true
   copy_file "jsconfig.json", force: true
-  copy_file "vite.config.ts", force: true
-
-  directory "bootstrap/app", "app", force: true
-  directory "bootstrap/lib", "lib", force: true
-
+  copy_file '.eslintrc.json'
   say "Remove bootstrap directory from template.", :red
   run "rm -rf #{app_name}/bootstrap"
+
 end
 
 def add_pages_controller
   generate "controller Pages home"
   route "root to: 'pages#home'"
+end
+
+def run_command_flags
+  ARGV.each do |flag|
+    # process arguments like so
+    copy_file 'vite.config-react.ts', 'vite.config.ts' if flag == '--react'
+    directory "bootstrap-react/app", "app", force: true
+    inject_into_file('.eslintrc.json', "\n    'react',", after: '"plugins": [') if flag == '--react'
+    add_javascript_react if flag == '--react'
+
+    copy_file 'vite.config-vue.ts', 'vite.config.ts' if flag == '--vue'
+    directory "bootstrap-vue/app", "app", force: true if flag == '--vue'
+    inject_into_file('.eslintrc.json', "\n    'vue',", after: '"plugins": [') if flag == '--vue'
+    add_javascript_vue if flag == '--vue'
+  end
 end
 
 # Main setup
@@ -72,9 +87,9 @@ after_bundle do
   add_template_repository_to_source_path
   set_application_name
   add_pages_controller
-  add_javascript
-
   copy_templates
+
+  run_command_flags
   add_vite
   rails_command "db:create"
   rails_command "active_storage:install"
@@ -89,7 +104,10 @@ after_bundle do
   end
 
   say
-  say "Rails 7 + Vue 3 + ViteJS + Bootstap 5 created!", :green
+  ARGV.each do |flag|
+    say 'Rails 7 + Vue 3 + ViteJS + Bootstrap created!', :green if flag == '--vue'
+    say 'Rails 7 + ReactJS 18 + ViteJS + Bootstrap created!', :green if flag == '--react'
+  end
   say
   say "To get started with your new app:", :yellow
   say "  cd #{app_name}"
