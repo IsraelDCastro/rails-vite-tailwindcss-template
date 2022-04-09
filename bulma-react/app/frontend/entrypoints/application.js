@@ -1,8 +1,6 @@
 import "./main.scss";
-import "@popperjs/core";
-import "bootstrap";
 
-import React, {createElement} from 'react';
+import React, { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from '@/components/views/home';
 

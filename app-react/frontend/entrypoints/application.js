@@ -5,5 +5,5 @@ import { createRoot } from 'react-dom/client';
 import App from '@/components/views/home';
 
 const domContainer = document.querySelector('#home');
-const root = createRoot(domContainer);
-root.render(createElement(App));
+const home = createRoot(domContainer);
+home.render(createElement(App));
