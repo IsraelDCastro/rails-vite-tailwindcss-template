@@ -46,7 +46,7 @@ end
 
 def add_javascript_react
   run 'yarn add bulma sass vite react react-dom'
-  run 'yarn add -D @vitejs/plugin-react-refresh eslint eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby'
+  run 'yarn add -D @vitejs/plugin-react-refresh eslint eslint-plugin-react eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby'
 end
 
 def copy_templates
