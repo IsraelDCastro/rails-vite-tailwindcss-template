@@ -37,6 +37,8 @@ rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want>
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template.rb --vue
 ```
 
+## <a name="tailwindcss"></a>[Rails 7 + ReactJS 18 + ViteJS + Tailwind CSS](#tailwindcss)
+
 ##### From GitHub with react
 
 ```bash
@@ -76,6 +78,8 @@ rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want>
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bootstrap.rb --vue
 ```
 
+## <a name="bootstrap"></a>[Rails 7 + ReactJS 18 + ViteJS + Bootstrap 5](#bootstrap)
+
 ##### From GitHub with react
 
 ```bash
@@ -87,7 +91,6 @@ rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want>
 ```bash
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bootstrap.rb --react
 ```
-
 
 Just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
@@ -114,6 +117,8 @@ rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want>
 ```bash
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bulma.rb --vue
 ```
+
+## <a name="bulma"></a>[Rails 7 + ReactJS 18 + ViteJS + Bulma](#bulma)
 
 ##### From GitHub with react
 
