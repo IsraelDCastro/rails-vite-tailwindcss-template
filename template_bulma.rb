@@ -115,7 +115,7 @@ after_bundle do
   end
 
   say
-  say 'To get started with your new app:', :yellow
+  say '  To get started with your new app:', :yellow
   say "  cd #{app_name}"
   say '  # If bulma directory is inside your project, be sure'
   say '  # To delete it, it does not affect your project.'

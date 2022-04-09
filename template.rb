@@ -116,7 +116,7 @@ after_bundle do
   end
 
   say
-  say 'To get started with your new app:', :yellow
+  say '  To get started with your new app:', :yellow
   say "  cd #{app_name}"
   say
   say '  # Please update config/database.yml with your database credentials'

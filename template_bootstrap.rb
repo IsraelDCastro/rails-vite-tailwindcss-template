@@ -109,7 +109,7 @@ after_bundle do
     say 'Rails 7 + ReactJS 18 + ViteJS + Bootstrap created!', :green if flag == '--react'
   end
   say
-  say 'To get started with your new app:', :yellow
+  say '  To get started with your new app:', :yellow
   say "  cd #{app_name}"
   say '  # If bootstrap directory is inside your project, be sure'
   say '  # To delete it, it does not affect your project.'
