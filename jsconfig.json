@@ -9,11 +9,11 @@
     "sourceMap": true,
     "strict": true,
     "paths": {
-      "@/*": ["./app/*"],
-      "~/*": ["./app/frontend/*"]
+      "@/*": ["app/*"],
+      "@/component*": ["app/frontend/components/*"]
     }
   },
-  "include": ["app/**/*"],
+  "include": ["app/**/*", "app/frontend/components/*"],
   "exclude": [
     "**/dist",
     "**/node_modules",
