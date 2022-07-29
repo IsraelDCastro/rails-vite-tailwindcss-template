@@ -14,7 +14,8 @@
     "sourceType": "module"
   },
   "plugins": [
-    "vue"
+    "vue",
+    "prettier"
   ],
   "rules": {
   }

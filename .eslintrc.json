@@ -4,7 +4,6 @@
     "es2021": true
   },
   "extends": [
-    "plugin:vue/essential",
     "eslint:recommended",
     "plugin:prettier/recommended"
   ],
@@ -13,7 +12,7 @@
     "sourceType": "module"
   },
   "plugins": [
-
+    "prettier"
   ],
   "rules": {
   }

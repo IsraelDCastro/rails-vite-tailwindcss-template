@@ -1,0 +1,1 @@
+# Rails Bootstrap Template
