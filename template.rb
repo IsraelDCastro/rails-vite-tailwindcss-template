@@ -96,6 +96,7 @@ after_bundle do
 
   rails_command 'db:create'
   rails_command 'active_storage:install'
+  rails_command 'db:migrate'
 
   # remove_file 'app/views/pages/home.html.erb'
   #
