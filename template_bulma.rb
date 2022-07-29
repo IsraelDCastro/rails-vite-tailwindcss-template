@@ -97,6 +97,7 @@ after_bundle do
   add_vite
   rails_command 'db:create'
   rails_command 'active_storage:install'
+  rails_command 'db:migrate'
 
   # rails_command "db:migrate"
   # Commit everything to git
