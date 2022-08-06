@@ -1,0 +1,15 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <%% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%%= notice %></p>
+    <%% end %>
+
+    <%%= render @<%= singular_table_name %> %>
+    <hr class="my-4">
+    <div class="flex justify-between items-center space-x-4">
+      <%%= link_to 'Edit this <%= singular_table_name %>', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-primary" %>
+      <%%= button_to 'Destroy this <%= singular_table_name %>', <%= singular_table_name %>_path(@<%= singular_table_name %>), method: :delete, class: "btn btn-secondary" %>
+      <%%= link_to 'Back to <%= plural_table_name %>', <%= index_helper %>_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

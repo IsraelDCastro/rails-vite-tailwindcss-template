@@ -1,0 +1,8 @@
+<div class="mx-auto sm:w-9/12 md:w-6/12 w-full">
+  <h1 class="font-bold text-4xl">Editing <%= human_name.downcase %></h1>
+
+  <%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
+  <hr class="my-8">
+  <%%= link_to "Show this <%= human_name.downcase %>", @<%= singular_table_name %>, class: "btn btn-secondary" %>
+  <%%= link_to "Back to <%= human_name.pluralize.downcase %>", <%= index_helper %>_path, class: "btn btn-secondary" %>
+</div>

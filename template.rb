@@ -66,6 +66,9 @@ def copy_templates
   # directory 'app', force: true
   directory 'config', force: true
   directory 'lib', force: true
+
+  run 'for file in lib/templates/**/**/*.txt; do mv "$file" "${file%.txt}.tt"; done'
+  say '  Custom scaffold templates copied', :green
 end
 
 def add_pages_controller
@@ -75,7 +78,6 @@ end
 
 def run_command_flags
   ARGV.each do |flag|
-    # process arguments like so
     copy_file 'vite.config-react.ts', 'vite.config.ts' if flag == '--react'
     copy_file '.eslintrc-react.json', '.eslintrc.json' if flag == '--react'
     directory 'app-react', 'app', force: true if flag == '--react'
@@ -106,11 +108,8 @@ after_bundle do
 
   rails_command 'db:create'
   rails_command 'active_storage:install'
+  rails_command 'g annotate:install'
   rails_command 'db:migrate'
-
-  # remove_file 'app/views/pages/home.html.erb'
-  #
-  # copy_file 'app/views/pages/home.html.erb'
 
   begin
     git add: '.'
@@ -129,7 +128,7 @@ after_bundle do
 
   say
   say '  To get started with your new app:', :yellow
-  say "  cd #{app_name}"
+  say "  cd #{original_app_name}"
   say
   say '  # Please update config/database.yml with your database credentials'
   say
