@@ -62,6 +62,10 @@ def copy_templates
   say 'Remove bootstrap directory from template.', :red
   run "rm -rf #{app_name}/bootstrap"
 
+  directory 'lib-bootstrap', 'lib', force: true
+
+  run 'for file in lib/templates/**/**/*.txt; do mv "$file" "${file%.txt}.tt"; done'
+  say '  Custom scaffold templates copied', :green
 end
 
 def add_pages_controller
@@ -103,12 +107,11 @@ after_bundle do
   add_vite
   rails_command 'db:create'
   rails_command 'active_storage:install'
+  rails_command 'g annotate:install'
   rails_command 'db:migrate'
-
-  # rails_command "db:migrate"
-  # Commit everything to git
+  
   begin
-    git add: ('.')
+    git add: '.'
     git commit: %( -m 'Initial commit' )
   rescue StandardError => e
     puts e.message
@@ -122,7 +125,7 @@ after_bundle do
   end
   say
   say '  To get started with your new app:', :yellow
-  say "  cd #{app_name}"
+  say "  cd #{original_app_name}"
   say '  # If bootstrap directory is inside your project, be sure'
   say '  # To delete it, it does not affect your project.'
   say '  # Please update config/database.yml with your database credentials'

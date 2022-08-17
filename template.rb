@@ -97,6 +97,7 @@ end
 
 # Main setup
 add_gems
+
 after_bundle do
   add_template_repository_to_source_path
   set_application_name
