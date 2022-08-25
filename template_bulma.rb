@@ -41,7 +41,7 @@ end
 
 def add_javascript
   run 'yarn add bulma sass vite'
-  run 'yarn add -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby'
+  run 'yarn add -D eslint prettier eslint-plugin-prettier eslint-config-prettier path vite-plugin-full-reload vite-plugin-ruby'
 end
 
 def add_javascript_vue
@@ -60,11 +60,13 @@ def copy_templates
   copy_file 'jsconfig.json', force: true
   copy_file '.eslintrc.json'
 
-  # directory "bulma/app", "app", force: true
-  # directory "bulma/lib", "lib", force: true
-
   say 'Remove bulma directory from template.', :red
   run "rm -rf #{app_name}/bulma"
+
+  directory 'lib-bootstrap', 'lib', force: true
+
+  run 'for file in lib/templates/**/**/*.txt; do mv "$file" "${file%.txt}.tt"; done'
+  say '  Custom scaffold templates copied', :green
 end
 
 def add_pages_controller
@@ -128,7 +130,7 @@ after_bundle do
 
   say
   say '  To get started with your new app:', :yellow
-  say "  cd #{app_name}"
+  say "  cd #{original_app_name}"
   say '  # If bulma directory is inside your project, be sure'
   say '  # To delete it, it does not affect your project.'
   say '  # Please update config/database.yml with your database credentials'

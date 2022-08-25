@@ -1,0 +1,15 @@
+<div class="mx-auto w-100 is-flex">
+  <div class="mx-auto">
+    <%% if notice.present? %>
+      <div class="notification is-success" role="alert"><%%= notice %></div>
+    <%% end %>
+
+    <%%= render @<%= singular_table_name %> %>
+    <hr class="my-4">
+    <div class="is-flex is-justify-content-between is-align-items-center">
+      <%%= link_to 'Edit this <%= singular_table_name %>', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "button is-primary mx-1" %>
+      <%%= link_to 'Back to <%= plural_table_name %>', <%= index_helper %>_path, class: "button is-secondary mx-1" %>
+      <%%= button_to 'Destroy this <%= singular_table_name %>', <%= singular_table_name %>_path(@<%= singular_table_name %>), method: :delete, class: "button is-secondary mx-1" %>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,7 @@
   <% else -%>
   <% if attribute.field_type == :text_area -%>
 <%%= form.label :<%= attribute.column_name %>, class: "form-label" %>
-    cd ..cd <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, rows: 4, class: "form-control" %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, rows: 4, class: "form-control" %>
   <% elsif attribute.field_type == :check_box -%>
 <div class="form-check">
       <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "form-check-input" %>

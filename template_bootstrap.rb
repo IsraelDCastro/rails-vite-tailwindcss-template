@@ -118,11 +118,13 @@ after_bundle do
   end
 
   say
+
   ARGV.each do |flag|
     say 'Rails 7 + Vue 3 + ViteJS + Bootstrap created!', :green if flag == '--vue'
     say 'Rails 7 + ReactJS 18 + ViteJS + Bootstrap created!', :green if flag == '--react'
     say 'Rails 7 + ViteJS + Bootstrap created!', :green if flag == '--normal'
   end
+
   say
   say '  To get started with your new app:', :yellow
   say "  cd #{original_app_name}"
