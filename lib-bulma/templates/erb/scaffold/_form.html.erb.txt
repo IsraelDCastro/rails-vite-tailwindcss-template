@@ -1,0 +1,45 @@
+<%%= form_with(model: <%= model_resource_name %>) do |form| %>
+<%%= render "shared/error_messages", resource: form.object %>
+
+<% attributes.each do |attribute| -%>
+  <div class="field">
+  <% if attribute.password_digest? -%>
+  <%%= form.label :password, class: "label" %>
+  <%%= form.password_field :password %>
+</div>
+
+  <div class="field">
+  <%%= form.label :password_confirmation, class: "label" %>
+  <div class="control">
+    <%%= form.password_field :password_confirmation, class: "input" %>
+  </div>
+  <% elsif attribute.attachments? -%>
+  <%%= form.label :<%= attribute.column_name %>, class: "label" %>
+  <div class="control">
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true, class: "input" %>
+  </div>
+  <% else -%>
+  <% if attribute.field_type == :text_area -%>
+<%%= form.label :<%= attribute.column_name %>, class: "label" %>
+<div class="control">
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, rows: 4, class: "textarea" %>
+  </div>
+  <% elsif attribute.field_type == :check_box -%>
+<div class="control">
+      <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+      <%%= form.label :<%= attribute.column_name %>, class: "checkbox" %>
+    </div>
+  <% else -%>
+<%%= form.label :<%= attribute.column_name %>, class: "label" %>
+<div class="control">
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "input" %>
+  </div>
+  <% end -%>
+<% end -%>
+</div>
+
+<% end -%>
+  <div class="inline">
+    <%%= form.submit class: "button is-primary" %>
+  </div>
+<%% end %>

@@ -1,0 +1,10 @@
+<div class="columns">
+  <div class="mx-auto column is-12 is-9-tablet is-6-desktop">
+    <h1 class="has-text-weight-bold">New <%= human_name.downcase %></h1>
+
+    <%%= render "form", <%= singular_table_name %>: @<%= singular_table_name %> %>
+    <hr class="my-4">
+    <%%= link_to "Show this <%= human_name.downcase %>", @<%= singular_table_name %>, class: "button is-secondary" %>
+    <%%= link_to "Back to <%= human_name.pluralize.downcase %>", <%= index_helper %>_path, class: "button is-secondary" %>
+  </div>
+</div>

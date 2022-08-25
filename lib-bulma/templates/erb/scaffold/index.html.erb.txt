@@ -1,0 +1,14 @@
+<div class="w-100">
+  <%% if notice.present? %>
+    <div class="notification is-success" role="alert"><%%= notice %></div>
+  <%% end %>
+
+  <div class="is-flex is-justify-content-space-between is-align-items-center mb-5">
+    <h1 class="has-text-weight-bold"><%= human_name.pluralize %></h1>
+    <%%= link_to 'New <%= human_name.downcase %>', new_<%= singular_route_name %>_path, class: "button is-primary" %>
+  </div>
+
+  <div id="<%= plural_table_name %>" class="is-flex is-flex-wrap-wrap">
+    <%%= render @<%= plural_table_name %> %>
+  </div>
+</div>
