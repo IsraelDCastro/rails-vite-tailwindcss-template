@@ -1,0 +1,22 @@
+<nav class="px-8 py-4 flex flex-wrap items-center bg-gray-50 shadow-sm">
+  <div class="text-center text-xl font-semibold mb-0">
+    <%= Rails.application.class.module_parent_name %>
+  </div>
+  <ul class="ml-auto flex space-x-4">
+    <li>
+      <%= link_to "Home",
+                  root_path,
+                  class: "text-gray-600 hover:text-sky-600 font-medium #{current_page?(root_path) ? 'text-sky-600' : nil }"
+      %>
+    </li>
+    <li>
+      <a href="#" class="text-gray-600 hover:text-sky-600 font-medium">About us</a>
+    </li>
+    <li>
+      <a href="#" class="text-gray-600 hover:text-sky-600 font-medium">Blog</a>
+    </li>
+    <li>
+      <a href="#" class="text-gray-600 hover:text-sky-600 font-medium">Contact</a>
+    </li>
+  </ul>
+</nav>

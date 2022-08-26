@@ -10,8 +10,12 @@
   </head>
 
   <body>
-    <main class="container mx-auto py-4 px-4 d-flex flex-column">
-      <%= yield %>
-    </main>
+    <div class="is-flex is-flex-direction-column" style="height: 100vh;">
+      <%= render "shared/navbar" %>
+      <main class="is-flex-grow-1 p-5">
+        <%= yield %>
+      </main>
+      <%= render "shared/footer" %>
+    </div>
   </body>
 </html>
