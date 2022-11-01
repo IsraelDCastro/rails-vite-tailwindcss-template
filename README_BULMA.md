@@ -37,6 +37,7 @@ rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want>
 ```bash
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bulma.rb --normal
 ```
+When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
 ## Rails 7 + Vue 3 + ViteJS + Bulma
 
@@ -51,6 +52,7 @@ rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want>
 ```bash
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bulma.rb --vue
 ```
+When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
 ## Rails 7 + ReactJS 18 + ViteJS + Bulma
 
@@ -65,8 +67,15 @@ rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want>
 ```bash
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bulma.rb --react
 ```
+When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
-Just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
+## Add Hotwired + Stimulus
+
+To use and add Hotwired + Stimulus to the project you have to add the flag `--hotwired` when you run the command to create the project. When you add the flag `--hotwired`, a `generators` folder will be copied into `lib` folder, so when you run `rails g stimulus controllerName`, when the file is created, it will appear in the `frontend/controllers` folder.
+
+And that is all, now you will have `Hotwired + Stimulus` installed in your project.
+
+### Default dependencies
 
 > - autoprefixer
 > - postcss
@@ -76,6 +85,8 @@ Just be sure to be inside the project when you run the command, from outside be 
 > - vue (Only with flag `--vue`)
 > - react (Only with flag `--react`)
 > - react-dom (Only with flag `--react`)
+> - @hotwired/stimulus (Only with flag `--hotwired`)
+> - @hotwired/turbo-rails (Only with flag `--hotwired`)
 
 ---
 
@@ -101,6 +112,7 @@ Just be sure to be inside the project when you run the command, from outside be 
 > - gem "vite_ruby"
 > - gem "image_processing", "~> 1.2"
 > - gem "annotate", group: :development
+> - gem "stimulus-rails" (Only with flag `--hotwired`)
 
 ### Thank you ⭐️
 

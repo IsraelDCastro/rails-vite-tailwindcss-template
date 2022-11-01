@@ -29,6 +29,10 @@ def add_gems
   gem 'annotate', group: :development
 end
 
+def add_hotwired_gem
+  gem 'stimulus-rails'
+end
+
 def set_application_name
   # Add Application Name to Config
   environment 'config.application_name = Rails.application.class.module_parent_name'
@@ -54,6 +58,10 @@ end
 def add_javascript_react
   run 'yarn add autoprefixer postcss sass tailwindcss vite react react-dom'
   run 'yarn add -D @vitejs/plugin-react-refresh eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-react eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby'
+end
+
+def add_hotwired
+  run 'yarn add @hotwired/stimulus @hotwired/turbo-rails'
 end
 
 def copy_templates
@@ -92,6 +100,10 @@ def run_command_flags
     copy_file '.eslintrc.json' if flag == '--normal'
     directory 'app', force: true if flag == '--normal'
     add_javascript if flag == '--normal'
+
+    directory 'hotwired-generator', 'lib/generators' if flag == '--hotwired'
+    add_hotwired_gem if flag == '--hotwired'
+    add_hotwired if flag == '--hotwired'
   end
 end
 
@@ -125,6 +137,7 @@ after_bundle do
     say 'Rails 7 + Vue 3 + ViteJS + Tailwindcss created!', :green if flag == '--vue'
     say 'Rails 7 + ReactJS 18 + ViteJS + Tailwindcss created!', :green if flag == '--react'
     say 'Rails 7 + ViteJS + Tailwindcss created!', :green if flag == '--normal'
+    say 'Hotwired + Stimulus were added successfully', :green if flag == '--hotwired'
   end
 
   say
