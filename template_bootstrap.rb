@@ -27,6 +27,10 @@ def add_gems
   gem 'annotate', group: :development
 end
 
+def add_hotwired_gem
+  gem 'stimulus-rails'
+end
+
 def set_application_name
   # Add Application Name to Config
   environment 'config.application_name = Rails.application.class.module_parent_name'
@@ -38,6 +42,7 @@ end
 def add_vite
   run 'bundle exec vite install'
 end
+
 
 def add_javascript
   run 'yarn add bootstrap @popperjs/core sass vite'
@@ -52,6 +57,10 @@ end
 def add_javascript_react
   run 'yarn add bootstrap @popperjs/core sass vite react react-dom'
   run 'yarn add -D @vitejs/plugin-react-refresh eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-react path vite-plugin-full-reload vite-plugin-ruby'
+end
+
+def add_hotwired
+  run 'yarn add @hotwired/stimulus @hotwired/turbo-rails'
 end
 
 def copy_templates
@@ -78,18 +87,22 @@ def run_command_flags
     # process arguments like so
     copy_file 'vite.config-react.ts', 'vite.config.ts' if flag == '--react'
     directory 'bootstrap-react/app', 'app', force: true if flag == '--react'
-    inject_into_file('.eslintrc.json', "\n" '    "react"', after: '"plugins": [') if flag == '--react'
+    copy_file '.eslintrc-react.json', '.eslintrc.json' if flag == '--react'
     add_javascript_react if flag == '--react'
 
     copy_file 'vite.config-vue.ts', 'vite.config.ts' if flag == '--vue'
     directory 'bootstrap-vue/app', 'app', force: true if flag == '--vue'
-    inject_into_file('.eslintrc.json', "\n" '    "vue"', after: '"plugins": [') if flag == '--vue'
+    copy_file '.eslintrc-vue.json', '.eslintrc.json' if flag == '--vue'
     add_javascript_vue if flag == '--vue'
 
     copy_file 'vite.config.ts' if flag == '--normal'
     copy_file '.eslintrc.json' if flag == '--normal'
     directory 'bootstrap/app', 'app', force: true if flag == '--normal'
     add_javascript if flag == '--normal'
+
+    directory 'hotwired-generator', 'lib/generators' if flag == '--hotwired'
+    add_hotwired_gem if flag == '--hotwired'
+    add_hotwired if flag == '--hotwired'
   end
 end
 
@@ -123,6 +136,7 @@ after_bundle do
     say 'Rails 7 + Vue 3 + ViteJS + Bootstrap created!', :green if flag == '--vue'
     say 'Rails 7 + ReactJS 18 + ViteJS + Bootstrap created!', :green if flag == '--react'
     say 'Rails 7 + ViteJS + Bootstrap created!', :green if flag == '--normal'
+    say 'Hotwired + Stimulus were added successfully', :green if flag == '--hotwired'
   end
 
   say
