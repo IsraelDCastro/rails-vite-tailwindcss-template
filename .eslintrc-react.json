@@ -6,8 +6,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
-    "plugin:tailwindcss/recommended"
+    "plugin:prettier/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -21,6 +20,48 @@
     "prettier"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "on"
+    "react/react-in-jsx-scope": "on",
+    "no-mixed-spaces-and-tabs": 0,
+    "camelcase": "off",
+    "react/prop-types": "off",
+    "react/forbid-prop-types": 0,
+    "react/require-default-props": 0,
+    "react/jsx-filename-extension": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "react/default-props-match-prop-types": [
+      0,
+      { "allowRequiredDefaults": true }
+    ],
+    "no-param-reassign": 0,
+    "react/no-array-index-key": 0,
+    "react/jsx-props-no-spreading": 0,
+    "no-console": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "no-shadow": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-use-before-define": [
+      "error",
+      { "functions": false, "classes": true, "variables": false }
+    ],
+    "no-unused-vars": [
+      1,
+      {
+        "ignoreRestSiblings": false
+      }
+    ],
+    "prettier/prettier": [
+      2,
+      {
+        "bracketSpacing": true,
+        "printWidth": 140,
+        "singleQuote": false,
+        "semi": true,
+        "trailingComma": "none",
+        "tabWidth": 2,
+        "useTabs": false,
+        "endOfLine": "auto"
+      }
+    ]
   }
 }

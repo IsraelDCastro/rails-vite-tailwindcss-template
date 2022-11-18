@@ -15,5 +15,23 @@
     "prettier"
   ],
   "rules": {
+    "no-var": "error",
+    "indent": ["error", 2],
+    "no-multi-spaces": "error",
+    "prefer-const": "error",
+    "no-undef": "off",
+    "prettier/prettier": [
+      2,
+      {
+        "bracketSpacing": true,
+        "printWidth": 140,
+        "singleQuote": false,
+        "semi": true,
+        "trailingComma": "none",
+        "tabWidth": 2,
+        "useTabs": false,
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
