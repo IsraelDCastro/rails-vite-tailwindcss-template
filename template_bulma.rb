@@ -104,6 +104,10 @@ def run_command_flags
     directory 'hotwired-generator', 'lib/generators' if flag == '--hotwired'
     add_hotwired_gem if flag == '--hotwired'
     add_hotwired if flag == '--hotwired'
+
+    if flag == '--hotwired'
+      inject_into_file('app/frontend/entrypoints/application.js', 'import { Turbo } from "@hotwired/turbo-rails";' "\n\n" 'window.Turbo = Turbo;' "\n\n", before: 'import "./main.scss";')
+    end
   end
 end
 
