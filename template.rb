@@ -31,6 +31,7 @@ end
 
 def add_hotwired_gem
   gem 'stimulus-rails'
+  gem 'turbo-rails'
 end
 
 def set_application_name
