@@ -47,7 +47,7 @@ end
 
 def add_javascript
   run 'yarn add bootstrap @popperjs/core sass vite'
-  run 'yarn add -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby'
+  run 'yarn add -D eslint prettier eslint-plugin-prettier eslint-config-prettier path vite-plugin-full-reload vite-plugin-ruby'
 end
 
 def add_javascript_vue
