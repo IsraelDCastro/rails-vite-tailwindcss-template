@@ -18,5 +18,12 @@
     <li>
       <a href="#" class="text-gray-600 hover:text-sky-600 font-medium">Contact</a>
     </li>
+    <% if user_signed_in? %>
+      <li><%= link_to 'Edit profile', edit_user_registration_path, class: "text-gray-600 hover:text-sky-600 font-medium #{current_page?(edit_user_registration_path) ? 'text-sky-600' : nil }" %></li>
+      <%= button_to t(".sign_out"), destroy_user_session_path, method: :delete, class: "text-red-400 hover:text-red-600 font-medium" %>
+    <% else %>
+      <li><%= link_to "Sign up", new_user_registration_path, class: "text-gray-600 hover:text-sky-600 font-medium #{current_page?(new_user_registration_path) ? 'text-sky-600' : nil }" %></li>
+      <li><%= link_to "Login", new_user_session_path, class: "text-gray-600 hover:text-sky-600 font-medium #{current_page?(new_user_session_path) ? 'text-sky-600' : nil }" %></li>
+    <% end %>
   </ul>
 </nav>

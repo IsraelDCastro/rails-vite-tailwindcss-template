@@ -1,0 +1,12 @@
+.label {
+  @apply mb-1 block font-semibold;
+}
+
+.field {
+  &:not(:last-child) {
+    @apply mb-4;
+  }
+  .input {
+    @apply bg-gray-50 border border-gray-200 px-4 py-2 rounded w-full;
+  }
+}

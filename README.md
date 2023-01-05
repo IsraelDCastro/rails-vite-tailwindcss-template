@@ -112,6 +112,8 @@ And that is all, now you will have `Hotwired + Stimulus` installed in your proje
 > - gem "vite_ruby"
 > - gem "image_processing", "~> 1.2"
 > - gem "annotate", group: :development
+> - gem 'devise' 
+> - gem 'name_of_person'
 > - gem "stimulus-rails" (Only with flag `--hotwired`)
 
 ### Thank you ⭐️

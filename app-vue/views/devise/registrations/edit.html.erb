@@ -1,0 +1,47 @@
+<% content_for :form_layout do %>
+  <h3 class="mb-5">Edit <%= resource_name.to_s.humanize %></h3>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :name, class: "label" %>
+      <%= f.text_field :name, placeholder: 'John', class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, class: "label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password, class: "label" %> <i>(leave blank if you don't want to change it)</i>
+      <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
+      <% if @minimum_password_length %>
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: "label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password, class: "label" %> <i>(we need your current password to confirm your changes)</i>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= f.submit "Update", class: "btn btn-primary w-full" %>
+    </div>
+  <% end %>
+  <hr class="my-5" />
+  <h5 class="mb-4">Unhappy? Cancel my account</h5>
+  <%= button_to "Cancel my account", registration_path(resource_name), class: "bg-red-300 hover:bg-red-400 rounded px-4 py-2", form: { class: "inline-block" }, data: { confirm: "Are you sure?" }, method: :delete %>
+<% end %>
+<%= render "devise/shared/form-layout" %>
