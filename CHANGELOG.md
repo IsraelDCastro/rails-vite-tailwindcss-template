@@ -1,3 +1,10 @@
+### Changes in January 2023
+
+##### 05/01/2023
+- devise and name_of_person gems were added by default for Tailwind CSS template.
+- _form.scss was added for Tailwind CSS template.
+- Other changes.
+
 ### Changes in November 2022
 
 - Added a missing gem `turbo-rails` to add turbo_frame tags functionality. Also, I forgot to initialize `window.Turbo from import { Turbo } from "@hotwired/turbo-rails";` in order of turbo_frame works correctly. 

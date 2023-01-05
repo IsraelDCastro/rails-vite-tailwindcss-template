@@ -27,6 +27,8 @@ def add_gems
   gem 'vite_ruby'
   gem 'image_processing', '~> 1.2'
   gem 'annotate', group: :development
+  gem 'devise'
+  gem 'name_of_person'
 end
 
 def add_hotwired_gem
@@ -125,6 +127,23 @@ after_bundle do
   add_vite
 
   rails_command 'db:create'
+  rails_command 'generate devise:install'
+  rails_command 'generate devise user'
+  rails_command 'generate migration AddNameFieldsToUser first_name last_name'
+  inject_into_file('app/models/user.rb', "\n\n" 'has_person_name' "\n\n", after: ':validatable')
+  inject_into_file('app/controllers/application_controller.rb', "\n\n" 'before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) do |u|
+      u.permit(:first_name, :last_name, :name, :email, :password)
+    end
+
+    devise_parameter_sanitizer.permit(:account_update) do |u|
+      u.permit(:first_name, :last_name, :name, :email, :password, :password_confirmation, :current_password)
+    end
+  end' "\n\n", after: 'class ApplicationController < ActionController::Base')
   rails_command 'active_storage:install'
   rails_command 'g annotate:install'
   rails_command 'db:migrate'
