@@ -1,5 +1,9 @@
 ### Changes in January 2023
 
+##### 31/01/2023
+- devise and name_of_person gems were added by default for Bootstrap template.
+- Other changes.
+
 ##### 05/01/2023
 - devise and name_of_person gems were added by default for Tailwind CSS template.
 - _form.scss was added for Tailwind CSS template.

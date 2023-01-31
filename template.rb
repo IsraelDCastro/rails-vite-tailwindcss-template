@@ -127,10 +127,11 @@ after_bundle do
   add_vite
 
   rails_command 'db:create'
+
   rails_command 'generate devise:install'
   rails_command 'generate devise user'
   rails_command 'generate migration AddNameFieldsToUser first_name last_name'
-  inject_into_file('app/models/user.rb', "\n\n" 'has_person_name' "\n\n", after: ':validatable')
+  inject_into_file('app/models/user.rb', "\n\n" '  has_person_name', after: ':validatable')
   inject_into_file('app/controllers/application_controller.rb', "\n\n" 'before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -144,6 +145,7 @@ after_bundle do
       u.permit(:first_name, :last_name, :name, :email, :password, :password_confirmation, :current_password)
     end
   end' "\n\n", after: 'class ApplicationController < ActionController::Base')
+
   rails_command 'active_storage:install'
   rails_command 'g annotate:install'
   rails_command 'db:migrate'
