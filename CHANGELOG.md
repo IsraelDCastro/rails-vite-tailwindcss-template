@@ -1,3 +1,9 @@
+### Changes in Febrary 2023
+
+##### 08/02/2023
+- devise and name_of_person gems were added by default for Bulma template.
+- Other changes.
+
 ### Changes in January 2023
 
 ##### 31/01/2023
