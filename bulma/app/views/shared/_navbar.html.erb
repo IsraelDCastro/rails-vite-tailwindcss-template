@@ -42,14 +42,17 @@
         </div>
       </div>
       <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
+        <% if user_signed_in? %>
+          <div class="buttons">
+            <%= link_to 'Edit profile', edit_user_registration_path, class: "button is-primary #{current_page?(edit_user_registration_path) ? nil : 'is-light' }" %>
+            <%= button_to t(".sign_out"), destroy_user_session_path, method: :delete, class: "button is-danger is-light" %>
+          </div>
+        <% else %>
+          <div class="buttons">
+            <%= link_to "Sign up", new_user_registration_path, class: "button is-primary #{current_page?(new_user_registration_path) ? nil : 'is-light' }" %>
+            <%= link_to "Login", new_user_session_path, class: "button is-link #{current_page?(new_user_session_path) ? nil : 'is-light' }" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
