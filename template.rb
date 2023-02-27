@@ -25,7 +25,7 @@ end
 def add_gems
   gem 'vite_rails'
   gem 'vite_ruby'
-  gem 'image_processing', '~> 1.2'
+  gem 'ruby-vips', '~> 2.1', '>= 2.1.4'
   gem 'annotate', group: :development
   gem 'devise'
   gem 'name_of_person'
@@ -148,6 +148,7 @@ after_bundle do
 
   rails_command 'active_storage:install'
   rails_command 'g annotate:install'
+  inject_into_file('config/application.rb', "\n\n" '    config.active_storage.variant_processor = :vips', after: 'config.load_defaults 7.0')
   rails_command 'db:migrate'
 
   begin

@@ -1,5 +1,9 @@
 ### Changes in Febrary 2023
 
+##### 27/02/2023
+- `image_processing` was removed, it was `ruby_vips` instead in each templates..
+- Change the active_storage config from `ImageMagick` to `Vips` as default.
+
 ##### 08/02/2023
 - devise and name_of_person gems were added by default for Bulma template.
 - Other changes.
