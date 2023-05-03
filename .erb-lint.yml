@@ -2,6 +2,7 @@
 glob: "**/*.{html,text,js}{+*,}.erb"
 exclude:
   - '**/vendor/**/*'
+  - '/opt/**/*'
   - '**/opt/**/*'
   - '**/node_modules/**/*'
 linters:
