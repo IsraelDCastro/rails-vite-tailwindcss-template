@@ -37,4 +37,6 @@ jobs:
     - name: Run tests
       run: |
             bundle install
+            ls ./vendor/bundle
+            gem install erb_lint
             erblint .
