@@ -36,5 +36,6 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: |
+            gem 'bundler', '~> 2.4'
             bundle install
             erblint .
