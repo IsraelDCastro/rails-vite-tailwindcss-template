@@ -1,3 +1,0 @@
-AllCops:
-  Include:
-    - '**/*.html.erb'
