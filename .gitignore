@@ -1,6 +1,7 @@
 .idea
 .vscode
 .DS_Store
+Gemfile.lock
 app/.DS_Store
 app/frontend/.DS_Store
 app/views/.DS_Store
