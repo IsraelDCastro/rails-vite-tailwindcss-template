@@ -132,7 +132,7 @@ after_bundle do
   rails_command 'generate devise user'
   rails_command 'generate migration AddNameFieldsToUser first_name last_name'
   inject_into_file('app/models/user.rb', "\n\n" '  has_person_name', after: ':validatable')
-  inject_into_file('app/controllers/application_controller.rb', "\n\n" 'before_action :configure_permitted_parameters, if: :devise_controller?
+  inject_into_file('app/controllers/application_controller.rb', "\n\n" '  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 

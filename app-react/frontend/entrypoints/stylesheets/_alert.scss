@@ -1,0 +1,9 @@
+.alert {
+  @apply w-fit absolute top-20 right-10 overflow-hidden rounded bg-gray-200 p-5 shadow-lg flex;
+  &.alert-primary {
+    @apply bg-blue-600 bg-opacity-80 text-white;
+  }
+  &.alert-danger {
+    @apply bg-red-600 bg-opacity-80 text-white;
+  }
+}
