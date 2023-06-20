@@ -1,0 +1,7 @@
+---
+exclude:
+  - '**/vendor/**/*'
+  - '**/gems/**/*'
+  - '/opt/**/*'
+  - '**/opt/**/*'
+  - '**/node_modules/**/*'

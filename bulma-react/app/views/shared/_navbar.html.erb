@@ -13,10 +13,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end">
-      <%= link_to "Home",
-                  root_path,
-                  class: "navbar-item #{current_page?(root_path) ? 'is-active' : nil }"
-      %>
+      <%= link_to "Home", root_path, class: "navbar-item #{current_page?(root_path) ? 'is-active': nil }" %>
       <a class="navbar-item">
         Documentation
       </a>
