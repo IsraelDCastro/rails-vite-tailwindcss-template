@@ -11,7 +11,8 @@
   <body>
     <div class="d-flex flex-column vh-100">
       <%= render "shared/navbar" %>
-      <main class="container mx-auto flex-grow-1 py-4 px-4 d-flex flex-column">
+      <%= render "shared/flash" %>
+      <main class="container px-4 py-4 mx-auto flex-grow-1 d-flex flex-column">
         <%= yield %>
       </main>
       <%= render "shared/footer" %>
