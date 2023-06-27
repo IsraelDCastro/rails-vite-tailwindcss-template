@@ -1,0 +1,9 @@
+<% flash.each do |type, msg| %>
+  <% if type == 'alert' %>
+    <%= content_tag :div, msg, class: "notification is-danger is-light", role: :alert %>
+  <% elsif type == 'notice' %>
+    <%= content_tag :div, msg, class: "notification is-primary is-light", role: :alert %>
+  <% else %>
+    <%= content_tag :div, msg, class: "notification", role: :alert %>
+  <% end %>
+<% end %>

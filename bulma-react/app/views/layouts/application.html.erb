@@ -11,7 +11,8 @@
   <body>
     <div class="is-flex is-flex-direction-column" style="height: 100vh;">
       <%= render "shared/navbar" %>
-      <main class="is-flex-grow-1 p-5">
+      <%= render "shared/flash" %>
+      <main class="p-5 is-flex-grow-1">
         <%= yield %>
       </main>
       <%= render "shared/footer" %>
