@@ -1,28 +1,26 @@
-<nav class="px-8 py-4 flex flex-wrap items-center bg-gray-50 shadow-sm">
-  <div class="text-center text-xl font-semibold mb-0">
+<nav class="navbar">
+  <div class="logo">
     <%= Rails.application.class.module_parent_name %>
   </div>
-  <ul class="ml-auto flex space-x-4">
+  <ul class="menu">
     <li>
-      <%= link_to "Home",
-                  root_path,
-                  class: "text-gray-600 hover:text-sky-600 font-medium #{current_page?(root_path) ? 'text-sky-600' : nil }" %>
+      <%= nav_link_to "Home", root_path, class: "nav-link" %>
     </li>
     <li>
-      <a href="#" class="text-gray-600 hover:text-sky-600 font-medium">About us</a>
+      <a href="#" class="nav-link">About us</a>
     </li>
     <li>
-      <a href="#" class="text-gray-600 hover:text-sky-600 font-medium">Blog</a>
+      <a href="#" class="nav-link">Blog</a>
     </li>
     <li>
-      <a href="#" class="text-gray-600 hover:text-sky-600 font-medium">Contact</a>
+      <a href="#" class="nav-link">Contact</a>
     </li>
     <% if user_signed_in? %>
-      <li><%= link_to 'Edit profile', edit_user_registration_path, class: "text-gray-600 hover:text-sky-600 font-medium #{current_page?(edit_user_registration_path) ? 'text-sky-600' : nil }" %></li>
+      <li><%= nav_link_to "Edit profile", edit_user_registration_path, class: "nav-link" %></li>
       <%= button_to t(".sign_out"), destroy_user_session_path, method: :delete, class: "text-red-400 hover:text-red-600 font-medium" %>
     <% else %>
-      <li><%= link_to "Sign up", new_user_registration_path, class: "text-gray-600 hover:text-sky-600 font-medium #{current_page?(new_user_registration_path) ? 'text-sky-600' : nil }" %></li>
-      <li><%= link_to "Login", new_user_session_path, class: "text-gray-600 hover:text-sky-600 font-medium #{current_page?(new_user_session_path) ? 'text-sky-600' : nil }" %></li>
+      <li><%= nav_link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
+      <li><%= nav_link_to "Login", new_user_session_path, class: "nav-link" %></li>
     <% end %>
   </ul>
 </nav>
