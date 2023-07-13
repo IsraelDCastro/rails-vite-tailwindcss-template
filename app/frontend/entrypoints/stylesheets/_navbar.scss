@@ -1,0 +1,16 @@
+.navbar {
+  @apply flex flex-wrap items-center px-8 py-4 shadow-sm bg-gray-50;
+  .logo {
+    @apply mb-0 text-xl font-semibold text-center;
+  }
+  .menu {
+    @apply flex ml-auto space-x-4;
+    .nav-link {
+      @apply text-gray-600 font-medium;
+      &:hover,
+      &.is-active {
+        @apply text-sky-600;
+      }
+    }
+  }
+}
