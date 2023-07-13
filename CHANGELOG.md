@@ -1,3 +1,9 @@
+### Changes in July 2023
+
+##### 13/07/2023
+- nav_link_to helper added to Tailwind CSS template, and some changes on navbar.
+- Flash messages added to Tailwind CSS, Bootstrap, adn Bulma template.
+
 ### Changes in Febrary 2023
 
 ##### 27/02/2023
