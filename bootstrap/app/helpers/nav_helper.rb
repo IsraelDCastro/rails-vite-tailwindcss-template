@@ -5,7 +5,7 @@ module NavHelper
     url = url_for(options)
     starts_with = html_options.delete(:starts_with)
     html_options[:class] ||= []
-    active_class = html_options.delete(:active_class) || 'is-active'
+    active_class = html_options.delete(:active_class) || 'active'
     inactive_class = html_options.delete(:inactive_class) || ''
 
     active = Array.wrap(starts_with).any? { |path| request.path.start_with?(path) } || request.path == url
@@ -15,6 +15,4 @@ module NavHelper
 
     link_to(name, url, html_options, &block)
   end
-
-
 end
