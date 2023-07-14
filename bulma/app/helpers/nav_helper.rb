@@ -15,6 +15,4 @@ module NavHelper
 
     link_to(name, url, html_options, &block)
   end
-
-
 end

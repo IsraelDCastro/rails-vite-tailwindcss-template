@@ -7,9 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <%= link_to "Home",
-                      root_path,
-                      class: "nav-link #{current_page?(root_path) ? 'active' : nil }" %>
+          <%= nav_link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Features</a>
@@ -18,11 +16,11 @@
           <a class="nav-link" href="#">Pricing</a>
         </li>
         <% if user_signed_in? %>
-          <li class="nav-item"><%= link_to 'Edit profile', edit_user_registration_path, class: "nav-link #{current_page?(edit_user_registration_path) ? 'active' : nil }" %></li>
+          <li class="nav-item"><%= nav_link_to "Edit profile", edit_user_registration_path, class: "nav-link" %></li>
           <%= button_to t(".sign_out"), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
         <% else %>
-          <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link #{current_page?(new_user_registration_path) ? 'active' : nil }" %></li>
-          <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link #{current_page?(new_user_session_path) ? 'active' : nil }" %></li>
+          <li class="nav-item"><%= nav_link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= nav_link_to "Login", new_user_session_path, class: "nav-link" %></li>
         <% end %>
       </ul>
     </div>

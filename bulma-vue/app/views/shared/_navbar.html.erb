@@ -13,9 +13,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-end">
-      <%= link_to "Home",
-                  root_path,
-                  class: "navbar-item #{current_page?(root_path) ? 'is-active' : nil }" %>
+      <%= nav_link_to "Home", root_path, class: "navbar-item" %>
       <a class="navbar-item">
         Documentation
       </a>
@@ -43,13 +41,13 @@
       <div class="navbar-item">
         <% if user_signed_in? %>
           <div class="buttons">
-            <%= link_to 'Edit profile', edit_user_registration_path, class: "button is-primary #{current_page?(edit_user_registration_path) ? nil : 'is-light' }" %>
+            <%= nav_link_to "Edit profile", edit_user_registration_path, class: "button", active_class: "is-primary", inactive_class: "is-light" %>
             <%= button_to t(".sign_out"), destroy_user_session_path, method: :delete, class: "button is-danger is-light" %>
           </div>
         <% else %>
           <div class="buttons">
-            <%= link_to "Sign up", new_user_registration_path, class: "button is-primary #{current_page?(new_user_registration_path) ? nil : 'is-light' }" %>
-            <%= link_to "Login", new_user_session_path, class: "button is-link #{current_page?(new_user_session_path) ? nil : 'is-light' }" %>
+            <%= nav_link_to "Sign up", new_user_registration_path, class: "button is-primary", inactive_class: "is-light" %>
+            <%= nav_link_to "Login", new_user_session_path, class: "button is-link", inactive_class: "is-light" %>
           </div>
         <% end %>
       </div>
