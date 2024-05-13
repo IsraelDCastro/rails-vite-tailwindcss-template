@@ -28,7 +28,7 @@ def add_gems
   gem 'ruby-vips', '~> 2.1', '>= 2.1.4'
   gem 'annotate', group: :development
   gem 'devise'
-  gem 'name_of_person'
+  # gem 'name_of_person'
 end
 
 def add_hotwired_gem
@@ -121,9 +121,10 @@ after_bundle do
   add_template_repository_to_source_path
   set_application_name
   add_pages_controller
-  run_command_flags
-
+  
   copy_templates
+
+  run_command_flags
   add_vite
 
   rails_command 'db:create'
