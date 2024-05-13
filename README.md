@@ -22,6 +22,8 @@ This template starts with Active Storage by default when you create it. If you d
 
 ## Installation
 
+Make sure you have `vips` in your brew list, or run `brew install vips`
+
 I use the flags `--skip-webpack-install --skip-javascript` to prevent installing webpack or esBuild to avoid conflicts with ViteJS⚡️.
 
 ## Rails 7 + ViteJS + Tailwind CSS
