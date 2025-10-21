@@ -1,5 +1,7 @@
+@reference "tailwindcss";
+
 html {
-  scroll-behavior: smooth;
+  @apply scroll-smooth;
 }
 
 body {

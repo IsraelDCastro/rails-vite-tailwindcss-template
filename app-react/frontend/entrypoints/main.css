@@ -1,12 +1,16 @@
 @import "tailwindcss";
 
 @layer utilities {
-  @import "./stylesheets/global.css";
-  @import "./stylesheets/buttons.css";
-  @import "./stylesheets/form.css";
-  @import "./stylesheets/alert.css";
-  @import "./stylesheets/navbar.css";
+  @import "./stylesheets/_global.css";
+  @import "./stylesheets/_buttons.css";
+  @import "./stylesheets/_form.css";
+  @import "./stylesheets/_alert.css";
+  @import "./stylesheets/_navbar.css";
 }
+
+@source "../../views/**/*.{html,erb,html.erb}";
+@source "../../helpers/**/*.{html,erb,html.erb}";
+@source "../components/views/**/*.{js,jsx,ts,tsx}";
 
 @theme {
   /* Add your theme here */

@@ -3,6 +3,15 @@
 require 'fileutils'
 require 'shellwords'
 
+# Flags helpers
+def skip_devise?
+  ARGV.include?('--skip-devise')
+end
+
+def skip_active_storage?
+  ARGV.include?('--skip-active-storage')
+end
+
 # Package manager helpers (default: bun). Use --package-manager=bun|yarn|npm|pnpm
 def selected_package_manager
   pm_flag = ARGV.find { |f| f.start_with?('--package-manager=') }
@@ -35,6 +44,11 @@ def pm_add_dev(packages)
   when 'npm' then "npm install -D #{packages}"
   when 'pnpm' then "pnpm add -D #{packages}"
   end
+end
+
+# Resolve Vite config filename (.ts or .mts)
+def vite_config_path
+  %w[vite.config.ts].find { |p| File.exist?(p) } || 'vite.config.ts'
 end
 
 def add_template_repository_to_source_path
@@ -82,18 +96,18 @@ def add_vite
 end
 
 def add_javascript
-  run pm_add('autoprefixer postcss tailwindcss vite')
-  run pm_add_dev('eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby')
+  run pm_add('tailwindcss vite')
+  run pm_add_dev('eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-tailwindcss @tailwindcss/vite path vite-plugin-full-reload vite-plugin-ruby')
 end
 
 def add_javascript_vue
-  run pm_add('autoprefixer postcss tailwindcss vite vue')
-  run pm_add_dev('@vitejs/plugin-vue @vue/compiler-sfc eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-vue eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby')
+  run pm_add('tailwindcss vite vue')
+  run pm_add_dev('@vitejs/plugin-vue @vue/compiler-sfc eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-vue eslint-plugin-tailwindcss @tailwindcss/vite path vite-plugin-full-reload vite-plugin-ruby')
 end
 
 def add_javascript_react
-  run pm_add('autoprefixer postcss tailwindcss vite react react-dom')
-  run pm_add_dev('@vitejs/plugin-react eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-react eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby')
+  run pm_add('tailwindcss vite react react-dom')
+  run pm_add_dev('@vitejs/plugin-react eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-react eslint-plugin-tailwindcss @tailwindcss/vite path vite-plugin-full-reload vite-plugin-ruby')
 end
 
 def add_hotwired
@@ -104,10 +118,7 @@ def copy_templates
 
   copy_file 'Procfile.dev'
   copy_file 'jsconfig.json'
-  copy_file 'tailwind.config.js'
-  copy_file 'postcss.config.js'
 
-  # directory 'app', force: true
   directory 'config', force: true
   directory 'lib', force: true
 
@@ -144,6 +155,14 @@ def run_command_flags
     if flag == '--hotwired'
       hotwired_inject = "import { Turbo } from \"@hotwired/turbo-rails\";\n\nwindow.Turbo = Turbo;\n\n"
       inject_into_file('app/frontend/entrypoints/application.js', hotwired_inject, before: 'import "./main.scss";')
+    end
+
+    # Tailwind CSS: add Vite plugin when using this template (Tailwind stack)
+    if ['--react', '--vue', '--normal'].include?(flag)
+      inject_into_file("vite.config.ts", "\nimport tailwindcss from \"@tailwindcss/vite\";", after: 'import RubyPlugin from "vite-plugin-ruby";')
+    end
+    if ['--react', '--vue', '--normal'].include?(flag)
+      inject_into_file("vite.config.ts", "    tailwindcss(),\n    ", after: "plugins: [\n")
     end
   end
 end
@@ -220,12 +239,4 @@ after_bundle do
   say '  # Please update config/database.yml with your database credentials'
   say
   say '  rails s'
-end
-# Flags helpers
-def skip_devise?
-  ARGV.include?('--skip-devise')
-end
-
-def skip_active_storage?
-  ARGV.include?('--skip-active-storage')
 end

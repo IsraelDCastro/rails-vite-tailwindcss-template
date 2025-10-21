@@ -79,7 +79,6 @@ And that is all, now you will have `Hotwired + Stimulus` installed in your proje
 
 > - autoprefixer
 > - postcss
-> - sass
 > - bootstrap
 > - @popperjs/core
 > - vite

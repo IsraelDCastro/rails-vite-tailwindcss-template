@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .label {
   @apply mb-1 block font-semibold;
 }
