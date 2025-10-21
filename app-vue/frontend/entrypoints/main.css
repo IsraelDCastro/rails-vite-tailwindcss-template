@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@layer utilities {
+  @import "./stylesheets/global.css";
+  @import "./stylesheets/buttons.css";
+  @import "./stylesheets/form.css";
+  @import "./stylesheets/alert.css";
+  @import "./stylesheets/navbar.css";
+}
+
+@theme {
+  /* Add your theme here */
+}

@@ -8,10 +8,13 @@
   </head>
 
   <body>
+    <a class="sr-only focus:not-sr-only" href="#main-content">Skip to main content</a>
     <div class="flex flex-col h-screen">
-      <%= render "shared/navbar" %>
+      <header>
+        <%= render "shared/navbar" %>
+      </header>
       <%= render "shared/flash" %>
-      <main class="container flex flex-col flex-1 px-5 mx-auto my-12">
+      <main id="main-content" class="container flex flex-col flex-1 px-5 mx-auto my-12" role="main">
         <%= yield %>
       </main>
       <%= render "shared/footer" %>

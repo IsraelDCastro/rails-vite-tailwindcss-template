@@ -2,11 +2,11 @@ import { defineConfig } from "vite";
 import * as path from "path";
 import FullReload from "vite-plugin-full-reload";
 import RubyPlugin from "vite-plugin-ruby";
-import ViteReact from "@vitejs/plugin-react-refresh";
+import React from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [
-    ViteReact(),
+    React(),
     RubyPlugin(),
     FullReload(["config/routes.rb", "app/views/**/*"], { delay: 250 }),
   ],

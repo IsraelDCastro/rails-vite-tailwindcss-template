@@ -5,6 +5,7 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:tailwindcss/recommended",
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
@@ -12,7 +13,8 @@
     "sourceType": "module"
   },
   "plugins": [
-    "prettier"
+    "prettier",
+    "tailwindcss"
   ],
   "rules": {
     "no-var": "error",

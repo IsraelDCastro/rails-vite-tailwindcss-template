@@ -3,6 +3,40 @@
 require 'fileutils'
 require 'shellwords'
 
+# Package manager helpers (default: bun). Use --package-manager=bun|yarn|npm|pnpm
+def selected_package_manager
+  pm_flag = ARGV.find { |f| f.start_with?('--package-manager=') }
+  value = pm_flag && pm_flag.split('=', 2)[1]
+  %w[bun yarn npm pnpm].include?(value) ? value : 'bun'
+end
+
+def pm_install
+  case selected_package_manager
+  when 'bun' then 'bun install'
+  when 'yarn' then 'yarn'
+  when 'npm' then 'npm install'
+  when 'pnpm' then 'pnpm install'
+  end
+end
+
+def pm_add(packages)
+  case selected_package_manager
+  when 'bun' then "bun add #{packages}"
+  when 'yarn' then "yarn add #{packages}"
+  when 'npm' then "npm install #{packages}"
+  when 'pnpm' then "pnpm add #{packages}"
+  end
+end
+
+def pm_add_dev(packages)
+  case selected_package_manager
+  when 'bun' then "bun add -d #{packages}"
+  when 'yarn' then "yarn add -D #{packages}"
+  when 'npm' then "npm install -D #{packages}"
+  when 'pnpm' then "pnpm add -D #{packages}"
+  end
+end
+
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require 'tmpdir'
@@ -24,11 +58,10 @@ end
 
 def add_gems
   gem 'vite_rails'
-  gem 'vite_ruby'
-  gem 'ruby-vips', '~> 2.1', '>= 2.1.4'
+  gem 'ruby-vips', '~> 2.1', '>= 2.1.4' unless skip_active_storage?
   gem 'annotate', group: :development
-  gem 'devise'
-  # gem 'name_of_person'
+  gem 'devise' unless skip_devise?
+  gem 'name_of_person' unless skip_devise?
 end
 
 def add_hotwired_gem
@@ -49,22 +82,22 @@ def add_vite
 end
 
 def add_javascript
-  run 'yarn add autoprefixer postcss sass tailwindcss vite'
-  run 'yarn add -D eslint prettier eslint-plugin-prettier eslint-config-prettier path vite-plugin-full-reload vite-plugin-ruby'
+  run pm_add('autoprefixer postcss tailwindcss vite')
+  run pm_add_dev('eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby')
 end
 
 def add_javascript_vue
-  run 'yarn add autoprefixer postcss sass tailwindcss vite vue'
-  run 'yarn add -D @vitejs/plugin-vue @vue/compiler-sfc eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-vue path vite-plugin-full-reload vite-plugin-ruby'
+  run pm_add('autoprefixer postcss tailwindcss vite vue')
+  run pm_add_dev('@vitejs/plugin-vue @vue/compiler-sfc eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-vue eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby')
 end
 
 def add_javascript_react
-  run 'yarn add autoprefixer postcss sass tailwindcss vite react react-dom'
-  run 'yarn add -D @vitejs/plugin-react-refresh eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-react path vite-plugin-full-reload vite-plugin-ruby'
+  run pm_add('autoprefixer postcss tailwindcss vite react react-dom')
+  run pm_add_dev('@vitejs/plugin-react eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-react eslint-plugin-tailwindcss path vite-plugin-full-reload vite-plugin-ruby')
 end
 
 def add_hotwired
-  run 'yarn add @hotwired/stimulus @hotwired/turbo-rails'
+  run pm_add('@hotwired/stimulus @hotwired/turbo-rails')
 end
 
 def copy_templates
@@ -90,17 +123,17 @@ end
 def run_command_flags
   ARGV.each do |flag|
     copy_file 'vite.config-react.ts', 'vite.config.ts' if flag == '--react'
-    copy_file '.eslintrc-react.json', '.eslintrc.json' if flag == '--react'
+    copy_file '.eslintrc-react-tailwind.json', '.eslintrc.json' if flag == '--react'
     directory 'app-react', 'app', force: true if flag == '--react'
     add_javascript_react if flag == '--react'
 
     copy_file 'vite.config-vue.ts', 'vite.config.ts' if flag == '--vue'
-    copy_file '.eslintrc-vue.json', '.eslintrc.json' if flag == '--vue'
+    copy_file '.eslintrc-vue-tailwind.json', '.eslintrc.json' if flag == '--vue'
     directory 'app-vue', 'app', force: true if flag == '--vue'
     add_javascript_vue if flag == '--vue'
 
     copy_file 'vite.config.ts' if flag == '--normal'
-    copy_file '.eslintrc.json' if flag == '--normal'
+    copy_file '.eslintrc-tailwind.json', '.eslintrc.json' if flag == '--normal'
     directory 'app', force: true if flag == '--normal'
     add_javascript if flag == '--normal'
 
@@ -109,7 +142,8 @@ def run_command_flags
     add_hotwired if flag == '--hotwired'
 
     if flag == '--hotwired'
-      inject_into_file('app/frontend/entrypoints/application.js', 'import { Turbo } from "@hotwired/turbo-rails";' "\n\n" 'window.Turbo = Turbo;' "\n\n", before: 'import "./main.scss";')
+      hotwired_inject = "import { Turbo } from \"@hotwired/turbo-rails\";\n\nwindow.Turbo = Turbo;\n\n"
+      inject_into_file('app/frontend/entrypoints/application.js', hotwired_inject, before: 'import "./main.scss";')
     end
   end
 end
@@ -126,30 +160,41 @@ after_bundle do
 
   run_command_flags
   add_vite
+  # Version files for reproducibility
+  create_file '.node-version', "20\n"
+  create_file '.ruby-version', "3.2.0\n"
 
   rails_command 'db:create'
 
-  rails_command 'generate devise:install'
-  rails_command 'generate devise user'
-  rails_command 'generate migration AddNameFieldsToUser first_name last_name'
-  inject_into_file('app/models/user.rb', "\n\n" '  has_person_name', after: ':validatable')
-  inject_into_file('app/controllers/application_controller.rb', "\n\n" '  before_action :configure_permitted_parameters, if: :devise_controller?
+  unless skip_devise?
+    rails_command 'generate devise:install'
+    rails_command 'generate devise user'
+    rails_command 'generate migration AddNameFieldsToUser first_name last_name'
+    inject_into_file('app/models/user.rb', "\n\n  has_person_name\n", after: ':validatable')
+    permitted_params_block = <<~RUBY
 
-  protected
+      before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) do |u|
-      u.permit(:first_name, :last_name, :name, :email, :password)
-    end
+      protected
 
-    devise_parameter_sanitizer.permit(:account_update) do |u|
-      u.permit(:first_name, :last_name, :name, :email, :password, :password_confirmation, :current_password)
-    end
-  end' "\n\n", after: 'class ApplicationController < ActionController::Base')
+      def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_up) do |u|
+          u.permit(:first_name, :last_name, :name, :email, :password)
+        end
 
-  rails_command 'active_storage:install'
+        devise_parameter_sanitizer.permit(:account_update) do |u|
+          u.permit(:first_name, :last_name, :name, :email, :password, :password_confirmation, :current_password)
+        end
+      end
+    RUBY
+    inject_into_file('app/controllers/application_controller.rb', permitted_params_block, after: 'class ApplicationController < ActionController::Base')
+  end
+
+  unless skip_active_storage?
+    rails_command 'active_storage:install'
+    inject_into_file('config/application.rb', "\n\n" '    config.active_storage.variant_processor = :vips', after: 'config.load_defaults 7.0')
+  end
   rails_command 'g annotate:install'
-  inject_into_file('config/application.rb', "\n\n" '    config.active_storage.variant_processor = :vips', after: 'config.load_defaults 7.0')
   rails_command 'db:migrate'
 
   begin
@@ -175,4 +220,12 @@ after_bundle do
   say '  # Please update config/database.yml with your database credentials'
   say
   say '  rails s'
+end
+# Flags helpers
+def skip_devise?
+  ARGV.include?('--skip-devise')
+end
+
+def skip_active_storage?
+  ARGV.include?('--skip-active-storage')
 end

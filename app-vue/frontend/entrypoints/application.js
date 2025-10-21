@@ -1,4 +1,4 @@
-import "./main.scss";
+import "./main.css";
 
 import { createApp } from 'vue';
 import Home from "../components/views/Home.vue";

@@ -5,12 +5,11 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
     "sourceMap": true,
     "strict": true,
     "paths": {
-      "@/*": ["app/*"],
-      "@/component*": ["app/frontend/components/*"]
+      "@/*": ["./app/*"],
+      "@/component*": ["./app/frontend/components/*"]
     }
   },
   "include": ["app/**/*", "app/frontend/components/*"],

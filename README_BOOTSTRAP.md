@@ -104,16 +104,28 @@ And that is all, now you will have `Hotwired + Stimulus` installed in your proje
 > - eslint-config-prettier
 > - vite-plugin-full-reload
 > - vite-plugin-ruby
-> - @vitejs/plugin-react-refresh (Only with flag `--react`)
+> - @vitejs/plugin-react (Only with flag `--react`)
 > - eslint-plugin-react (Only with flag `--react`)
 
 ### Default gems
 
 > - gem "vite_rails"
-> - gem "vite_ruby"
-> - gem "image_processing", "~> 1.2"
+> - gem "ruby-vips", ">= 2.1.4"
 > - gem "annotate", group: :development
 > - gem "stimulus-rails" (Only with flag `--hotwired`)
+
+### Package manager
+
+By default templates can use `bun` as package manager via flag `--package-manager=bun|yarn|npm|pnpm` (default: bun in this repo). Examples with Bun:
+
+> - Install: `bun install`
+> - Add dev deps: `bun add -d eslint prettier`
+> - Run executables: `bunx <pkg>`
+
+### Minimum versions
+
+- Ruby >= 3.1
+- Node.js >= 18 (20+ recommended)
 
 ### Thank you ⭐️
 
