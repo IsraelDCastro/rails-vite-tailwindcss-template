@@ -3,7 +3,9 @@ html {
 }
 
 body {
-  @apply text-base text-slate-800 leading-5 bg-gray-50;
+  font-size: 16px;
+  color: #232323;
+  line-height: 1.5;
 }
 
 h1 {
@@ -35,18 +37,6 @@ p {
   margin-bottom: 10px;
 }
 
-h1, h2, h3, h4, h5, h6, button, a, label{
-  @apply font-sans;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  @apply leading-tight;
-}
-
-h1, h2, h3 {
-  @apply font-bold;
-}
-
 @media screen and (max-width: 767px){
   h1 {
     font-size: 2em;
@@ -67,21 +57,4 @@ h1, h2, h3 {
   h5 {
     font-size: 1.375em;
   }
-}
-
-img, svg {
-  @apply w-full h-auto;
-}
-
-.main {
-  @apply flex flex-col h-screen;
-}
-
-.wrapper {
-  @apply flex-1 relative;
-}
-
-.container {
-  width: 95%;
-  @apply mx-auto py-10;
 }
