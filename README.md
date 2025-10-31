@@ -1,8 +1,8 @@
 This is a rails template with <a href="https://vuejs.org/" target="_blank">VueJS</a> and <a href="https://vitejs.dev/" target="_blank">ViteJS</a> as roll up. Also you can choose between CSS Frameworks as: <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>, <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>, or <a href="https://bulma.io/" target="_blank">Bulma</a>.
 
-This is the best option to start a project with Rails 7 + Vite. You can make a fast project and start working on it without any problem. Now you can choose between Tailwind CSS, Bootstrap or Bulma.
+This is the best option to start a project with Ruby on Rails 7 or 8 + Vite. You can make a fast project and start working on it without any problem. Now you can choose between Tailwind CSS, Bootstrap or Bulma.
 
-Now you have the option to start the project with <a href="https://reactjs.org/" target="_blank">React JS (18)</a>, with the preference of choosing different CSS Frameworks.
+Now you have the option to start the project with <a href="https://react.dev/" target="_blank">React JS (19)</a>, with the preference of choosing different CSS Frameworks.
 
 This template starts with Active Storage by default when you create it. If you don't want, just remove it.
 
@@ -10,7 +10,7 @@ This template starts with Active Storage by default when you create it. If you d
 
 - To start a project without Vue or React just add the flag `--normal` to command line.
 - `VueJS 3` to start a project with Vue just add the flag `--vue` to command line.
-- `ReactJS 18` to start a project with Vue just add the flag `--react` to command line.
+- `ReactJS 19` to start a project with React just add the flag `--react` to command line.
 
 ### CSS Frameworks
 
@@ -24,50 +24,77 @@ This template starts with Active Storage by default when you create it. If you d
 
 Make sure you have `vips` in your brew list, or run `brew install vips`.
 
-I use the flags `--skip-webpack-install --skip-javascript` to prevent installing webpack or esBuild to avoid conflicts with ViteJS⚡️.
+When you generate the application:
 
-## Rails 7 + ViteJS + Tailwind CSS
+- **Rails 7**: use `--skip-webpack-install --skip-javascript` to avoid conflicts with ViteJS⚡️.
+- **Rails 8**: only `--skip-javascript` is needed because webpack/esbuild is no longer part of the default stack.
+
+## Ruby on Rails 7/8 + ViteJS + Tailwind CSS
 
 ##### From GitHub without Vue or React
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template.rb --normal
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template.rb --normal
 ```
 
 ##### Making a git clone of the project without Vue or React
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template.rb --normal
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m template.rb --normal
 ```
 When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
-## Rails 7 + Vue 3 + ViteJS + Tailwind CSS
+## Ruby on Rails 7/8 + Vue 3 + ViteJS + Tailwind CSS
 
 ##### From GitHub with vue
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template.rb --vue
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template.rb --vue
 ```
 
 ##### Making a git clone of the project with vue
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template.rb --vue
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m template.rb --vue
 ```
 When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
-## Rails 7 + ReactJS 18 + ViteJS + Tailwind CSS
+## Ruby on Rails 7/8 + ReactJS 19 + ViteJS + Tailwind CSS
 
 ##### From GitHub with react
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template.rb --react
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template.rb --react
 ```
 
 ##### Making a git clone of the project with react
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template.rb --react
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m template.rb --react
 ```
 When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
@@ -129,28 +156,28 @@ Examples with Bun:
 ### Thank you ⭐️
 
 If you have any questions, just make an issue, I'll answer you as soon as possible.
-### Versions mínimas recomendadas
+### Minimum recommended versions
 
 - Ruby >= 3.1
-- Node.js >= 18 (recomendado 20+)
-- Bun >= 1.0 si eliges `--package-manager=bun`
+- Node.js >= 18 (recommended 20+)
+- Bun >= 1.0 if you choose `--package-manager=bun`
 - ### Optional flags
 
-- `--skip-devise`: no instala Devise ni genera el modelo `User`. Omite la inyección de parámetros permitidos y `name_of_person`.
-- `--skip-active-storage`: no instala Active Storage ni configura `variant_processor = :vips`. Omite la dependencia `ruby-vips`.
-- `--package-manager=bun|yarn|npm|pnpm`: selecciona el gestor de paquetes (por defecto `bun`).
+- `--skip-devise`: does not install Devise or generate the `User` model. Skips permitted parameters injection and `name_of_person`.
+- `--skip-active-storage`: does not install Active Storage or set `variant_processor = :vips`. Skips the `ruby-vips` dependency.
+- `--package-manager=bun|yarn|npm|pnpm`: selects the package manager (default `bun`).
 
 ### Troubleshooting
 
-- VIPS no instalado: `brew install vips` (macOS) o `apt-get install libvips` (Ubuntu).
-- Puertos en uso: Vite usa 3036/5173 según config; Rails 3000. Cambia puertos o cierra procesos ocupando los puertos.
-- CSP en producción: si usas CSP estricta, permite orígenes para assets servidos por Vite y ajusta `config/environments/production.rb`.
+- VIPS not installed: `brew install vips` (macOS) or `apt-get install libvips` (Ubuntu).
+- Ports in use: Vite uses 3036/5173 depending on config; Rails 3000. Change ports or stop processes using those ports.
+- CSP in production: if you use a strict CSP, allow origins for assets served by Vite and adjust `config/environments/production.rb`.
 
-### CSP y Vite (producción y desarrollo)
+### CSP and Vite (production and development)
 
-Rails incluye una política CSP por defecto. Si activas una CSP estricta, asegúrate de permitir la carga de assets generados por Vite:
+Rails includes a default CSP policy. If you enable a strict CSP, make sure to allow loading assets generated by Vite:
 
-`config/initializers/content_security_policy.rb` (ejemplo):
+`config/initializers/content_security_policy.rb` (example):
 
 ```ruby
 Rails.application.config.content_security_policy do |policy|
@@ -161,18 +188,18 @@ Rails.application.config.content_security_policy do |policy|
   policy.script_src  :self, :https
   policy.style_src   :self, :https, :unsafe_inline
 
-  # En producción, sirve assets desde la ruta pública (Vite build)
-  # y permite hotlinking a CDNs si los usas.
+  # In production, serve assets from the public path (Vite build)
+  # and allow hotlinking to CDNs if you use them.
 end
 
-# Permitir 'unsafe-eval' en dev si es necesario para Vite HMR
+# Allow 'unsafe-eval' in dev if needed for Vite HMR
 if Rails.env.development?
   Rails.application.config.content_security_policy do |policy|
     policy.script_src :self, :https, :unsafe_eval
-    # Si Vite corre en localhost:5173
+    # If Vite runs on localhost:5173
     policy.connect_src :self, "http://localhost:5173", "ws://localhost:5173"
   end
 end
 ```
 
-En producción, no necesitas puertos de HMR; sólo asegúrate que los assets precompilados estén permitidos por CSP.
+In production, you don't need HMR ports; just ensure precompiled assets are allowed by CSP.

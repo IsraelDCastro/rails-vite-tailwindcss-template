@@ -227,7 +227,7 @@ after_bundle do
 
   ARGV.each do |flag|
     say 'Rails 7 + Vue 3 + ViteJS + Tailwindcss created!', :green if flag == '--vue'
-    say 'Rails 7 + ReactJS 18 + ViteJS + Tailwindcss created!', :green if flag == '--react'
+    say 'Rails 7 + ReactJS 19 + ViteJS + Tailwindcss created!', :green if flag == '--react'
     say 'Rails 7 + ViteJS + Tailwindcss created!', :green if flag == '--normal'
     say 'Hotwired + Stimulus were added successfully', :green if flag == '--hotwired'
   end
