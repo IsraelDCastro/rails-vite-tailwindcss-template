@@ -1,8 +1,8 @@
 This is a rails template with <a href="https://vuejs.org/" target="_blank">VueJS</a> and <a href="https://vitejs.dev/" target="_blank">ViteJS</a> as roll up. Also you can choose between CSS Frameworks as: <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a>, <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>, or <a href="https://bulma.io/" target="_blank">Bulma</a>.
 
-This is the best option to start a project with Rails 7 + Vite. You can make a fast project and start working on it without any problem. Now you can choose between Tailwind CSS, Bootstrap or Bulma.
+This is the best option to start a project with Ruby on Rails 7 or 8 + Vite. You can make a fast project and start working on it without any problem. Now you can choose between Tailwind CSS, Bootstrap or Bulma.
 
-Now you have the option to start de project with <a href="https://reactjs.org/" target="_blank">React JS (18)</a>, with the preference of choosing different CSS Frameworks.
+Now you have the option to start de project with <a href="https://react.dev/" target="_blank">React JS (19)</a>, with the preference of choosing different CSS Frameworks.
 
 This template starts with Active Storage by default when you create it. If you don't want, just remove it.
 
@@ -10,7 +10,7 @@ This template starts with Active Storage by default when you create it. If you d
 
 - To start a project without Vue or React just add the flag `--normal` to command line.
 - `VueJS 3` to start a project with Vue just add the flag `--vue` to command line.
-- `ReactJS 18` to start a project with Vue just add the flag `--react` to command line.
+- `ReactJS 19` to start a project with React just add the flag `--react` to command line.
 
 ### CSS Frameworks
 
@@ -22,50 +22,77 @@ This template starts with Active Storage by default when you create it. If you d
 
 ## Installation
 
-I use the flags `--skip-webpack-install --skip-javascript` to prevent installing webpack or esBuild to avoid conflicts with ViteJS⚡️.
+When you generate the application:
 
-## Rails 7 + ViteJS + Bootstrap 5
+- **Rails 7**: use `--skip-webpack-install --skip-javascript` to avoid conflicts with ViteJS⚡️.
+- **Rails 8**: only `--skip-javascript` is needed because webpack/esbuild is no longer part of the default stack.
+
+## Ruby on Rails 7/8 + ViteJS + Bootstrap 5
 
 ##### From GitHub without Vue or React
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template_bootstrap.rb --normal
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template_bootstrap.rb --normal
 ```
 
 ##### Making a git clone of the project without Vue or React
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bootstrap.rb --normal
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m template_bootstrap.rb --normal
 ```
 When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
-## Rails 7 + Vue 3 + ViteJS + Bootstrap 5
+## Ruby on Rails 7/8 + Vue 3 + ViteJS + Bootstrap 5
 
 ##### From GitHub with vue
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template_bootstrap.rb --vue
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template_bootstrap.rb --vue
 ```
 
 ##### Making a git clone of the project with vue
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bootstrap.rb --vue
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m template_bootstrap.rb --vue
 ```
 When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
-## Rails 7 + ReactJS 18 + ViteJS + Bootstrap 5
+## Ruby on Rails 7/8 + ReactJS 19 + ViteJS + Bootstrap 5
 
 ##### From GitHub with react
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template_bootstrap.rb --react
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m https://raw.githubusercontent.com/IsraelDCastro/rails-vite-tailwindcss-template/master/template_bootstrap.rb --react
 ```
 
 ##### Making a git clone of the project with react
 
 ```bash
+# Rails 7
 rails new my_app --skip-webpack-install --skip-javascript -d <database_you_want> -m template_bootstrap.rb --react
+
+# Rails 8
+rails new my_app --skip-javascript -d <database_you_want> -m template_bootstrap.rb --react
 ```
 When you clone the repo just be sure to be inside the project when you run the command, from outside be sure to put the correct file direction.
 
@@ -79,7 +106,6 @@ And that is all, now you will have `Hotwired + Stimulus` installed in your proje
 
 > - autoprefixer
 > - postcss
-> - sass
 > - bootstrap
 > - @popperjs/core
 > - vite
@@ -104,16 +130,28 @@ And that is all, now you will have `Hotwired + Stimulus` installed in your proje
 > - eslint-config-prettier
 > - vite-plugin-full-reload
 > - vite-plugin-ruby
-> - @vitejs/plugin-react-refresh (Only with flag `--react`)
+> - @vitejs/plugin-react (Only with flag `--react`)
 > - eslint-plugin-react (Only with flag `--react`)
 
 ### Default gems
 
 > - gem "vite_rails"
-> - gem "vite_ruby"
-> - gem "image_processing", "~> 1.2"
+> - gem "ruby-vips", ">= 2.1.4"
 > - gem "annotate", group: :development
 > - gem "stimulus-rails" (Only with flag `--hotwired`)
+
+### Package manager
+
+By default templates can use `bun` as package manager via flag `--package-manager=bun|yarn|npm|pnpm` (default: bun in this repo). Examples with Bun:
+
+> - Install: `bun install`
+> - Add dev deps: `bun add -d eslint prettier`
+> - Run executables: `bunx <pkg>`
+
+### Minimum versions
+
+- Ruby >= 3.1
+- Node.js >= 18 (20+ recommended)
 
 ### Thank you ⭐️
 

@@ -1,4 +1,4 @@
-import "./main.scss";
+import "./main.css";
 
 import React, { createElement } from 'react';
 import { createRoot } from 'react-dom/client';

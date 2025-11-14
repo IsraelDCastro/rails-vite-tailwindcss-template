@@ -1,0 +1,4 @@
+@import "bulma/css/bulma.min.css";
+
+@import "./stylesheets/_global.css";
+@import "./stylesheets/_notification.css";

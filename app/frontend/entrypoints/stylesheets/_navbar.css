@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 .navbar {
   @apply flex flex-wrap items-center px-8 py-4 shadow-sm bg-gray-50;
   .logo {

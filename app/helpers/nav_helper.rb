@@ -10,11 +10,10 @@ module NavHelper
 
     active = Array.wrap(starts_with).any? { |path| request.path.start_with?(path) } || request.path == url
     html_options[:class] << (active ? " #{active_class}" : " #{inactive_class}")
+    html_options[:'aria-current'] = 'page' if active
 
     html_options.except!(:class) if html_options[:class].empty?
 
     link_to(name, url, html_options, &block)
   end
-
-
 end

@@ -4,7 +4,9 @@
     "es2021": true
   },
   "extends": [
+    "plugin:vue/essential",
     "eslint:recommended",
+    "plugin:tailwindcss/recommended",
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
@@ -12,13 +14,18 @@
     "sourceType": "module"
   },
   "plugins": [
-    "prettier"
+    "vue",
+    "prettier",
+    "tailwindcss"
   ],
   "rules": {
+    "vue/multi-word-component-names": 0,
     "no-var": "error",
     "indent": ["error", 2],
     "no-multi-spaces": "error",
     "prefer-const": "error",
+    "vue/html-indent": ["error", 2],
+    "vue/no-side-effects-in-computed-properties": 0,
     "no-undef": "off",
     "prettier/prettier": [
       2,

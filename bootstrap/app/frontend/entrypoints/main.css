@@ -1,0 +1,4 @@
+@import "bootstrap";
+
+@import "./stylesheets/_global.css";
+@import "./stylesheets/_alert.css";

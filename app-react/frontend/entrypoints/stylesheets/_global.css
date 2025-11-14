@@ -1,7 +1,8 @@
-html {
-  scroll-behavior: smooth;
-}
+@reference "tailwindcss";
 
+html {
+  @apply scroll-smooth;
+}
 body {
   @apply text-base text-slate-800 leading-5 bg-gray-50;
 }

@@ -31,3 +31,14 @@
 - Some files were changed and fixed because some lines were duplicated.
 - Added the option to add hotwired and stimulus when creating a new project. This is optional.
 - Some rules of prettier and eslint were added to the eslintrc.json file.
+### Changes in October 2025
+
+- Added Bun package manager support with `--package-manager` flag and helpers.
+- Replaced `@vitejs/plugin-react-refresh` with `@vitejs/plugin-react`.
+- Fixed template injections (Devise params, Hotwired import) and improved readability.
+- ESLint configs updated (ECMAScript 2022); added Tailwind-aware configs.
+- Added optional flags: `--skip-devise`, `--skip-active-storage`.
+- Created `.node-version` and `.ruby-version` in generated apps for reproducibility.
+- Introduced CI workflow with smoke matrix (css × js) and syntax checks.
+- Documentation: Bun usage, minimum versions, troubleshooting, CSP guidance.
+- Accessibility: added skip link, landmarks, and `aria-current` for active nav links across templates.

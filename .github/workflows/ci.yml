@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  ruby-lint:
+    name: Ruby Template Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      - name: Check syntax of templates
+        run: |
+          ruby -c template.rb
+          ruby -c template_bulma.rb
+          ruby -c template_bootstrap.rb
+
+  eslint-config-parse:
+    name: ESLint Config Parse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Parse ESLint configs (JSON sanity)
+        run: |
+          node -e "require('./.eslintrc.json')"
+          node -e "require('./.eslintrc-react.json')"
+          node -e "require('./.eslintrc-vue.json')"
+
+  # smoke-matrix:
+  smoke-matrix:
+    name: Smoke Matrix
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        css: [tailwind, bootstrap, bulma]
+        js: [normal, react, vue]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: oven-sh/setup-bun@v1
+      - name: Install Rails
+        run: |
+          gem install rails -N
+      - name: Generate app from template
+        env:
+          CSS: ${{ matrix.css }}
+          JS: ${{ matrix.js }}
+        run: |
+          set -euxo pipefail
+          app="app-${CSS}-${JS}"
+          template="template.rb"
+          if [ "$CSS" = "bootstrap" ]; then template="template_bootstrap.rb"; fi
+          if [ "$CSS" = "bulma" ]; then template="template_bulma.rb"; fi
+          flags="--package-manager=bun"
+          if [ "$JS" = "react" ]; then flags="$flags --react"; fi
+          if [ "$JS" = "vue" ]; then flags="$flags --vue"; fi
+          if [ "$JS" = "normal" ]; then flags="$flags --normal"; fi
+          rails new "$app" --skip-webpack-install --skip-javascript -d sqlite3 -m "$template" $flags
+      - name: Smoke: rails about
+        run: |
+          cd app-${{ matrix.css }}-${{ matrix.js }}
+          bin/rails about
+      - name: Smoke: vite version and build
+        run: |
+          cd app-${{ matrix.css }}-${{ matrix.js }}
+          bundle exec vite -v
+          bundle exec vite build
